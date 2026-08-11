@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Captain Bond</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="loadingScreen" class="loading-screen"><div class="loader-card"><h1>CAPTAIN BOND</h1><p>Loading Mission Database...</p><div class="loader-track"><span></span></div><b>ACCESS GRANTED</b></div></div>
+  <div id="agentOverlay" class="agent-overlay">
+    <div class="dot-bg"></div>
+    <div class="blob blob-one"></div>
+    <div class="blob blob-two"></div>
+    <div class="overlay-card">
+      <div class="section-kicker"><span></span><b data-i18n="overlayBadge"></b><span></span></div>
+      <h1 data-i18n="overlayTitle"></h1>
+      <p class="muted" data-i18n="overlaySubtitle"></p>
+      <div id="agentChoices" class="agent-choices"></div>
+      <p class="tiny muted" data-i18n="overlayFooter"></p>
+    </div>
+  </div>
+
+  <header class="language-bar">
+    <button data-lang="en">English</button><i>|</i>
+    <button data-lang="zh">中文</button><i>|</i>
+    <button data-lang="ms">Bahasa Melayu</button><i>|</i>
+    <button data-lang="ta">தமிழ்</button>
+  </header>
+  <nav id="missionProgress" class="mission-progress"><span data-step="agent">① Agent</span><span data-step="mission">② Mission</span><span data-step="brief">③ Briefing</span><span data-step="register">④ Register</span><span data-step="accepted">⑤ Accepted</span></nav>
+
+  <main>
+    <section id="hero" class="hero section-cream">
+      <div class="dot-bg"></div>
+      <div class="cityline" aria-hidden="true">
+        <svg viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax meet">
+          <rect x="0" y="120" width="60" height="80"/><rect x="5" y="110" width="50" height="15"/><rect x="62" y="115" width="55" height="85"/><rect x="67" y="105" width="45" height="15"/><rect x="119" y="125" width="50" height="75"/><rect x="171" y="118" width="58" height="82"/><rect x="500" y="80" width="20" height="120"/><rect x="540" y="85" width="20" height="115"/><rect x="580" y="75" width="20" height="125"/><rect x="490" y="68" width="130" height="16" rx="4"/><circle cx="900" cy="100" r="55"/><rect x="896" y="150" width="8" height="50"/><rect x="1050" y="60" width="30" height="140"/><rect x="1090" y="40" width="25" height="160"/><rect x="1125" y="70" width="35" height="130"/><rect x="1162" y="90" width="38" height="110"/>
+        </svg>
+      </div>
+      <div class="blob blob-one"></div><div class="blob blob-two"></div>
+      <div class="hero-inner">
+        <div class="badge" data-i18n="heroBadge"></div>
+        <div class="dossier-wrap">
+          <div class="folder-shadow one"></div><div class="folder-shadow two"></div>
+          <div class="folder-tabs"><b data-i18n="heroTab1"></b><b data-i18n="heroTab2"></b><b data-i18n="heroTab3"></b></div>
+          <article class="dossier-card">
+            <div class="classified">CLASSIFIED</div>
+            <div class="gradient-line"></div>
+            <div class="dossier-content">
+              <div class="hero-profile">
+                <div class="avatar"><img src="https://media.base44.com/images/public/user_6a0e55f14e34cd728808a321/09b078ab5_WhatsAppImage2026-05-19at31811PM.jpg" alt="Captain Bond" /></div>
+                <div class="avatar-badge">007</div>
+              </div>
+              <div class="hero-copy">
+                <p class="label" data-i18n="heroDossier"></p>
+                <h1><span data-i18n="heroTitle1"></span> <em data-i18n="heroHighlight"></em> <span data-i18n="heroTitle2"></span></h1>
+              </div>
+              <div class="hero-text full">
+                <p class="italic" data-i18n="heroDescItalic"></p>
+                <p data-i18n="heroDesc"></p>
+                <p class="italic small" data-i18n="heroDescItalic2"></p>
+              </div>
+              <div class="chips full"><span data-i18n="heroQuick"></span><span data-i18n="heroStandard"></span><span data-i18n="heroDeep"></span></div>
+              <div class="hero-actions full"><a href="#discover" data-i18n="heroCta1"></a><a href="#agents" data-i18n="heroCta2"></a></div>
+              <div class="ref-row full"><span data-i18n="heroRef"></span><span data-i18n="heroLocation"></span></div>
+            </div>
+          </article>
+        </div>
+        <p class="scroll-text" data-i18n="heroScroll"></p>
+      </div>
+    </section>
+
+    <section id="agents" class="agents section-tan">
+      <div class="dot-bg"></div>
+      <div class="container narrow">
+        <div class="section-title"><div class="section-kicker"><span></span><b data-i18n="dossiersBadge"></b><span></span></div><h2 data-i18n="dossiersTitle"></h2><p data-i18n="dossiersSubtitle"></p></div>
+        <div id="agentDossiers" class="dossier-list"></div>
+        <div class="center"><a class="text-link" href="#discover" data-i18n="scrollToMissions"></a></div>
+      </div>
+    </section>
+
+    <section id="discover" class="missions section-cream">
+      <div class="dot-bg"></div>
+      <div class="container">
+        <div class="section-title"><div class="section-kicker"><span></span><b data-i18n="archiveBadge"></b><span></span></div><h2 data-i18n="archiveTitle"></h2><p class="italic" data-i18n="archiveSubItalic"></p><p data-i18n="archiveSub"></p></div>
+        <button id="filterToggle" class="filter-toggle"><span data-i18n="filtersBtn"></span> <small>▼</small></button>
+        <div id="filterPanel" class="filter-panel hidden"></div>
+        <div id="missionGrid" class="mission-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <section class="qr-section">
+      <div class="container narrow center">
+        <div class="section-kicker"><span></span><b>Connect With Us</b><span></span></div>
+        <h2>Scan to Stay Connected</h2>
+        <div class="qr-grid">
+          <div><img src="https://media.base44.com/images/public/6a26606da56b24dec75ea012/6b5b914e5_image.png" alt="Instagram QR"><h3>📸 Follow Us on Instagram</h3><p>Scan to follow our Instagram for updates, family mission ideas, stories and upcoming activities.</p></div>
+          <div><img src="https://media.base44.com/images/public/6a26606da56b24dec75ea012/5c7886a67_image.png" alt="Website QR"><h3>🌐 Visit Captain Bond</h3><p>Scan to access the Captain Bond Family Mission Platform and register for activities.</p></div>
+        </div>
+      </div>
+    </section>
+    <section class="brand-footer"><div class="dot-bg"></div><h2>CAPTAIN BOND</h2><p data-i18n="footerTagline"></p><small data-i18n="footerMotto"></small><div>REF: CB-FAMILY-MISSION-007 · © 2026 Captain Bond</div></section>
+  </footer>
+
+  <div id="modal" class="modal hidden"><div class="modal-backdrop"></div><div class="modal-box"><div id="modalContent"></div></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
