@@ -1,9 +1,14 @@
 // Google Apps Script for Captain Bond registrations
 // IMPORTANT:
-// 1) Paste this whole file into Apps Script.
-// 2) Deploy > Manage deployments > Edit > New version > Deploy.
-// 3) The registration sheet will use the headers below.
+// 1) Paste this whole file into Apps Script (https://script.google.com).
+// 2) Set the SPREADSHEET_ID constant below if you are using a standalone script (not bound to the sheet).
+//    - If you leave SPREADSHEET_ID empty, the script will use the active spreadsheet (bound script).
+// 3) Deploy → Manage deployments → New deployment → Select "Web app" →
+//    - Execute as: Me
+//    - Who has access: Anyone (even anonymous)  <-- required if the website is public
+//    - Save and copy the Web app URL, then paste it into your site's script.js as GOOGLE_SCRIPT_URL
 
+const SPREADSHEET_ID = ''; // Optional. Put your Google Spreadsheet ID here if needed, e.g. '1AbC...'
 const SHEET_NAME = 'Registrations';
 
 const HEADERS = [
@@ -27,7 +32,7 @@ function doPost(e) {
   lock.waitLock(10000);
 
   try {
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = SPREADSHEET_ID ? SpreadsheetApp.openById(SPREADSHEET_ID) : SpreadsheetApp.getActiveSpreadsheet();
     let sheet = ss.getSheetByName(SHEET_NAME);
     if (!sheet) sheet = ss.insertSheet(SHEET_NAME);
 
@@ -42,12 +47,18 @@ function doPost(e) {
   } catch (err) {
     return json_({ status: 'error', message: err.message });
   } finally {
-    lock.releaseLock();
+    try { lock.releaseLock(); } catch (ignore) {}
   }
 }
 
 function doGet(e) {
-  return json_({ status: 'ready', message: 'Captain Bond registration endpoint is working.' });
+  // Support both JSON and JSONP (callback=...)
+  const payload = { status: 'ready', message: 'Captain Bond registration endpoint is working.' };
+  if (e && e.parameter && e.parameter.callback) {
+    const cb = e.parameter.callback;
+    return ContentService.createTextOutput(cb + '(' + JSON.stringify(payload) + ')').setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return json_(payload);
 }
 
 function ensureHeaders_(sheet) {
