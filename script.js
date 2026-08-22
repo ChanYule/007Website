@@ -12,7 +12,7 @@ const IMG = {
   // Dumpling Making uses the previous 5-Second Hugs image.
   // Model Racing Car Making uses the previous Dumpling Making image.
   // Love Letter for Ah Mah uses the previous Model Racing Car image.
-  1:"https://media.base44.com/images/public/6a26606da56b24dec75ea012/71334ead9_ChatGPTImageJun10202602_01_29PM.png",
+  1:"/images/FamilyPhoto.png",
   2:"https://media.base44.com/images/public/6a26606da56b24dec75ea012/2ae1847a0_Screenshot2026-06-10132457.png",
   3:"https://media.base44.com/images/public/6a26606da56b24dec75ea012/30bd7a419_Screenshot2026-06-10132527.png",
   4:"https://media.base44.com/images/public/6a26606da56b24dec75ea012/b2fc4bf10_image.png",
