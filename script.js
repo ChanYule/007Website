@@ -18,7 +18,7 @@ const IMG = {
   4:"https://media.base44.com/images/public/6a26606da56b24dec75ea012/b2fc4bf10_image.png",
   5:"https://media.base44.com/images/public/6a26606da56b24dec75ea012/e1189d795_generated_892e1f25.png",
   6:"https://media.base44.com/images/public/6a26606da56b24dec75ea012/08901186c_image.png",
-  7:"https://media.base44.com/images/public/6a26606da56b24dec75ea012/6f457d77e_image.png",
+  7:"/images/Massage.png",
 };
 const MISSION_IDS = [1,2,3,6,7,4,5];
 const MISSION_AGENT = {1:"zip-lip",2:"akan-datang",3:"ice",4:"zip-lip",5:"ice",6:"zip-lip",7:"ice"};
