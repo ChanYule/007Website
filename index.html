@@ -3,31 +3,393 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Captain Bond family activity coordination platform" />
+  <meta name="description" content="Captain Bond helps families find small, low-pressure activities that build stronger bonds." />
   <title>Captain Bond | Family Mission Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="loadingScreen" class="loading-screen" aria-hidden="true"><div class="loader-card"><span class="eyebrow">Captain Bond</span><h1>Preparing your family mission desk</h1><div class="loader-track"><span></span></div></div></div>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="Captain Bond home"><span class="brand-mark">CB</span><span><b>CAPTAIN BOND</b><small>Family Mission Platform</small></span></a>
-    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
-    <nav class="main-nav" id="mainNav" aria-label="Main navigation"><a href="#agents">Agent Profiles</a><a href="#directory">Activity Directory</a><a href="#cocreate">Co-Create Activity</a><a href="#journey">My Journey</a><a href="#resources">Take-Home Resources</a></nav>
-    <button class="header-assist" id="assistButton" type="button">☎ Assisted Registration</button>
+  <a class="skip-link" href="#home">Skip to content</a>
+  <div id="loadingScreen" class="loading-screen" aria-hidden="true">
+    <div class="loader-card">
+      <img class="brand-logo" src="images/captain-bond-logo.png" alt="Captain Bond" />
+      <span class="eyebrow">Captain Bond</span>
+      <h1>Preparing your family mission desk</h1>
+      <div class="loader-track" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#home" aria-label="Captain Bond home">
+      <img class="brand-logo" src="images/captain-bond-logo.png" alt="Captain Bond" />
+      <span><b>CAPTAIN BOND</b><small>Family Mission Platform</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#agents">Agent Profiles</a>
+      <a href="#directory">Activity Directory</a>
+      <a href="#cocreate">Co-Create</a>
+      <a href="#journey">My Journey</a>
+      <a href="#resources">Resources</a>
+    </nav>
+    <div class="header-tools">
+      <div class="language-switcher" role="group" aria-label="Language">
+        <button type="button" data-lang="en" class="active" aria-pressed="true">EN</button>
+        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+        <button type="button" data-lang="ms" aria-pressed="false">BM</button>
+        <button type="button" data-lang="ta" aria-pressed="false">த</button>
+      </div>
+      <button class="header-assist" id="assistButton" type="button">Assisted Registration</button>
+    </div>
   </header>
-  <div class="utility-bar"><div class="language-switcher"><button data-lang="en" class="active">English</button><button data-lang="zh">中文</button><button data-lang="ms">Melayu</button><button data-lang="ta">தமிழ்</button></div></div>
+
   <main>
-    <section id="agents" class="agents section-tan"><div class="container"><div class="section-heading"><span class="eyebrow">Agent profiles</span><h2>Choose the profile that feels closest to your family.</h2><p>These profiles are not labels or diagnoses. They are gentle starting points that help us suggest a comfortable first mission.</p></div><div class="agent-profile-grid"><article class="agent-profile-card" data-agent="akan-datang"><div class="agent-card-top"><span class="agent-badge badge-navy">AGENT AKAN DATANG</span><span>Confidential</span></div><div class="agent-profile-body"><div class="agent-avatar">⌛</div><div class="agent-profile-copy"><span class="agent-label">Agent codename</span><h3>Agent Akan Datang</h3><p class="agent-quote">I keep thinking I'll spend more time with my parents... just not today.</p><p class="agent-subquote">The mission keeps getting delayed.</p><p class="agent-description">You care deeply, but life, work, and timing keep pushing family moments to tomorrow.</p><div class="agent-card-footer"><span>Agent profile</span><b>CB-001</b></div><button class="agent-select" type="button" data-select-agent="akan-datang">Select this agent</button></div></div></article><article class="agent-profile-card" data-agent="zip-lip"><div class="agent-card-top"><span class="agent-badge badge-teal">AGENT ZIP LIP</span><span>Confidential</span></div><div class="agent-profile-body"><div class="agent-avatar">🤐</div><div class="agent-profile-copy"><span class="agent-label">Agent codename</span><h3>Agent Zip Lip</h3><p class="agent-quote">When I'm with my parents, I don't know what to say.</p><p class="agent-subquote">The silence is loud.</p><p class="agent-description">You want to connect, but conversations may feel awkward, short, or hard to start.</p><div class="agent-card-footer"><span>Agent profile</span><b>CB-002</b></div><button class="agent-select" type="button" data-select-agent="zip-lip">Select this agent</button></div></div></article><article class="agent-profile-card" data-agent="ice"><div class="agent-card-top"><span class="agent-badge badge-clay">AGENT ICE</span><span>Confidential</span></div><div class="agent-profile-body"><div class="agent-avatar">🧊</div><div class="agent-profile-copy"><span class="agent-label">Agent codename</span><h3>Agent Ice</h3><p class="agent-quote">We talk often... but we don't really connect.</p><p class="agent-subquote">Frequent contact. Low warmth.</p><p class="agent-description">You may communicate often, but the emotional connection can still feel distant.</p><div class="agent-card-footer"><span>Agent profile</span><b>CB-003</b></div><button class="agent-select" type="button" data-select-agent="ice">Select this agent</button></div></div></article></div></div></section>
-    <section id="home" class="hero section-cream"><div class="hero-grid"><div class="hero-copy"><span class="eyebrow">A calmer way to connect</span><h1>Small plans.<br /><em>Stronger bonds.</em></h1><p>Find an activity that fits your family, shape something new together, and keep the momentum going at home.</p><div class="hero-actions"><a class="button primary" href="#directory">Explore activities <span>→</span></a><a class="button quiet" href="#agents">Choose an agent profile</a></div><div class="hero-proof"><span>01 <b>Choose</b></span><span>02 <b>Coordinate</b></span><span>03 <b>Keep going</b></span></div></div><div class="hero-panel"><div class="panel-top"><span>THIS WEEK'S BRIEF</span><b>CB / 007</b></div><div class="hero-orbit"><div class="orbit-ring"></div><div class="mission-token">✦</div><div class="orbit-note note-one">15 min<br /><b>Low lift</b></div><div class="orbit-note note-two">2–8<br /><b>People</b></div></div><h2>A little time can make room for a real conversation.</h2><p>Personalised prompts and practical support for different ages, languages, and comfort levels.</p><div class="panel-footer"><span class="status-dot"></span> Your mission desk is ready</div></div></div></section>
-    <section class="pathways section-tan"><div class="container"><div class="section-heading"><span class="eyebrow">Your four pathways</span><h2>Everything your family needs, in one place.</h2><p>Move between planning, participation, reflection, and support without losing your place.</p></div><div class="pathway-grid"><a href="#directory" class="pathway-card"><span class="pathway-number">01</span><strong>Activity Directory</strong><p>Browse ready-to-run family activities by theme, time, and accessibility.</p><span class="card-arrow">↗</span></a><a href="#cocreate" class="pathway-card"><span class="pathway-number">02</span><strong>Co-Create Activity</strong><p>Ask for a tailored plan or help the community build the next one.</p><span class="card-arrow">↗</span></a><a href="#journey" class="pathway-card"><span class="pathway-number">03</span><strong>My Journey</strong><p>Keep preparation prompts, reflections, and routine check-ins together.</p><span class="card-arrow">↗</span></a><a href="#resources" class="pathway-card"><span class="pathway-number">04</span><strong>Take-Home Resources</strong><p>Download conversation guides, recipe cards, and practical activity kits.</p><span class="card-arrow">↗</span></a></div></div></section>
-    <section id="directory" class="directory section-cream"><div class="container"><div class="section-heading heading-row"><div><span class="eyebrow">Activity directory</span><h2>Find your next shared moment.</h2><p>Browse activities built for different energy levels, family styles, and available time.</p></div><div class="directory-controls"><label class="search-box"><span>⌕</span><input id="activitySearch" type="search" placeholder="Search activities..." /></label><select id="themeFilter" aria-label="Filter by theme"><option value="all">All themes</option><option value="cooking">Cooking</option><option value="heritage">Heritage trails</option><option value="arts">Arts & making</option><option value="volunteering">Volunteering</option></select></div></div><div class="tag-row" id="directoryTags"><button class="active" data-theme="all">All activities</button><button data-theme="cooking">Cooking</button><button data-theme="heritage">Heritage trails</button><button data-theme="arts">Arts & making</button><button data-theme="volunteering">Family volunteering</button></div><div id="activityGrid" class="activity-grid"></div><p id="directoryEmpty" class="empty-state hidden">No activities match those filters. Try a wider search or create a tailored activity.</p></div></section>
-    <section id="cocreate" class="cocreate section-navy"><div class="container"><div class="section-heading light"><span class="eyebrow">Co-create activity</span><h2>Make the next idea yours.</h2><p>Request support for your family's constraints, then help the wider community decide what comes next.</p></div><div class="co-create-grid"><form id="customForm" class="dark-form"><h3>Request a tailored activity</h3><p>Our team can adapt for mobility, language, caring responsibilities, or confidence.</p><label>What would you enjoy together?<input name="idea" required placeholder="e.g. A gentle food memory session" /></label><label>What support or constraint should we plan for?<textarea name="constraints" rows="3" placeholder="Tell us about mobility, language, timing, or caregiving needs"></textarea></label><div class="inline-fields"><label>Preferred language<select name="language"><option>English</option><option>中文</option><option>Bahasa Melayu</option><option>தமிழ்</option></select></label><label>Ideal group size<select name="group"><option>2 people</option><option>3–4 people</option><option>5+ people</option></select></label></div><button class="button gold" type="submit">Send request <span>→</span></button><p id="customStatus" class="form-status"></p></form><div class="idea-board"><div class="board-head"><div><span class="eyebrow">Community board</span><h3>Propose & upvote</h3></div><button class="text-button" id="showIdeaForm" type="button">+ Propose an idea</button></div><form id="ideaForm" class="idea-form hidden"><input name="title" required placeholder="Name your activity idea" /><input name="description" placeholder="What would make it special?" /><button class="button small-gold" type="submit">Post idea</button></form><div id="ideaList" class="idea-list"></div><div class="threshold"><div><span>Community threshold</span><b>20 families needed</b></div><div class="threshold-track"><i id="thresholdProgress"></i></div><small>When an idea reaches the threshold, we will explore a pilot session.</small></div></div></div></div></section>
-    <section id="journey" class="journey section-tan"><div class="container"><div class="section-heading heading-row"><div><span class="eyebrow">My journey</span><h2>Your family's small wins, visible.</h2><p>A private dashboard for the next step, the last reflection, and the routine you are building.</p></div><span class="journey-status"><i class="status-dot"></i> Private family view</span></div><div class="dashboard-grid"><article class="dash-card next-mission"><div class="card-label">Next up</div><h3>Prepare for your first shared mission</h3><p>Choose one small question to carry into your next activity: <em>“What did you enjoy when you were my age?”</em></p><button class="button outline" data-scroll="#directory">Choose an activity</button></article><article class="dash-card"><div class="card-label">Routine pulse</div><div class="pulse-number">1 <small>shared moment</small></div><div class="pulse-track"><i style="width:25%"></i></div><p class="small-copy">One moment is enough to start. Keep the next one simple.</p></article><article class="dash-card reflection"><div class="card-label">After your activity</div><h3>Reflection prompts</h3><ul><li>What felt easy today?</li><li>When did someone feel heard?</li><li>What would we repeat next time?</li></ul><button class="text-button" data-reflection>Open reflection →</button></article></div><div class="survey-strip"><div><span class="eyebrow">Routine check-ins</span><h3>Track the shape of your shared time.</h3></div><div class="survey-list"><button data-survey="Baseline"><b>Baseline</b><small>Before you begin</small></button><button data-survey="30-day"><b>30-day</b><small>Early rhythm</small></button><button data-survey="60-day"><b>60-day</b><small>Growing confidence</small></button><button data-survey="90-day"><b>90-day</b><small>Look back</small></button></div></div></div></section>
-    <section id="resources" class="resources section-cream"><div class="container"><div class="section-heading"><span class="eyebrow">Take-home kits</span><h2>Keep the connection going at home.</h2><p>Practical prompts for the days between activities. Download, print, or share with your family group.</p></div><div class="resource-grid"><button class="resource-card" data-resource="Recipe card"><span class="resource-icon">✦</span><strong>Recipe cards</strong><p>Simple food activities that make room for stories.</p><span class="download-label">Download PDF ↘</span></button><button class="resource-card" data-resource="Conversation guide"><span class="resource-icon">◌</span><strong>Conversation guides</strong><p>Low-pressure prompts for different ages and comfort levels.</p><span class="download-label">Download PDF ↘</span></button><button class="resource-card" data-resource="Model-building instructions"><span class="resource-icon">△</span><strong>Model-building instructions</strong><p>Build, tinker, and talk with a shared focus.</p><span class="download-label">Download PDF ↘</span></button></div><div class="safeguarding"><div class="safety-mark">!</div><div><span class="eyebrow">Safeguarding support</span><h3>Some family situations need a trained person.</h3><p>If there is conflict, distress, or a concern about someone's safety, you can speak with our support team privately. We will listen and help you identify the next appropriate step.</p></div><div class="safety-actions"><a class="button primary" href="tel:+6561234567">☎ Call support</a><a class="button outline" href="mailto:support@captainbond.example">✉ Email trained staff</a></div></div></div></section>
+    <section id="home" class="hero">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">A calmer way to connect</span>
+          <h1>Small plans.<br /><em>Stronger bonds.</em></h1>
+          <p>Find an activity that fits your family, shape something new together, and keep the momentum going at home.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#directory">Explore activities <span aria-hidden="true">→</span></a>
+            <a class="button quiet" href="#agents">Choose an agent profile</a>
+          </div>
+          <ol class="hero-proof">
+            <li><span>01</span> <b>Choose</b></li>
+            <li><span>02</span> <b>Coordinate</b></li>
+            <li><span>03</span> <b>Keep going</b></li>
+          </ol>
+        </div>
+        <aside class="hero-panel" aria-label="This week's brief">
+          <div class="panel-top"><span>This week's brief</span><b>CB / 007</b></div>
+          <div class="hero-orbit" aria-hidden="true">
+            <div class="orbit-ring"></div>
+            <div class="mission-token">✦</div>
+            <div class="orbit-note note-one">15 min<br /><b>Low lift</b></div>
+            <div class="orbit-note note-two">2–8<br /><b>People</b></div>
+          </div>
+          <h2>A little time can make room for a real conversation.</h2>
+          <p>Personalised prompts and practical support for different ages, languages, and comfort levels.</p>
+          <div class="panel-footer"><span class="status-dot"></span> Your mission desk is ready</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="pathways section-tan" aria-labelledby="pathways-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Your four pathways</span>
+          <h2 id="pathways-title">Everything your family needs, in one place.</h2>
+          <p>Move between planning, participation, reflection, and support without losing your place.</p>
+        </div>
+        <div class="pathway-grid">
+          <a href="#directory" class="pathway-card">
+            <span class="pathway-number">01</span>
+            <strong>Activity Directory</strong>
+            <p>Browse ready-to-run family activities by theme, time, and accessibility.</p>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="#cocreate" class="pathway-card">
+            <span class="pathway-number">02</span>
+            <strong>Co-Create Activity</strong>
+            <p>Ask for a tailored plan or help the community build the next one.</p>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="#journey" class="pathway-card">
+            <span class="pathway-number">03</span>
+            <strong>My Journey</strong>
+            <p>Keep preparation prompts, reflections, and routine check-ins together.</p>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="#resources" class="pathway-card">
+            <span class="pathway-number">04</span>
+            <strong>Take-Home Resources</strong>
+            <p>Download conversation guides, recipe cards, and practical activity kits.</p>
+            <span class="card-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="agents" class="agents section-cream" aria-labelledby="agents-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Agent profiles</span>
+          <h2 id="agents-title">Choose the profile that feels closest to your family.</h2>
+          <p>These profiles are not labels or diagnoses. They are gentle starting points that help us suggest a comfortable first mission.</p>
+        </div>
+        <div class="agent-profile-grid">
+          <article class="agent-profile-card" data-agent="akan-datang">
+            <div class="agent-card-top"><span class="agent-badge badge-navy">Agent Akan Datang</span><span>Confidential</span></div>
+            <div class="agent-profile-body">
+              <div class="agent-avatar" aria-hidden="true">⌛</div>
+              <div class="agent-profile-copy">
+                <span class="agent-label">Agent codename</span>
+                <h3>Agent Akan Datang</h3>
+                <p class="agent-quote">I keep thinking I'll spend more time with my parents... just not today.</p>
+                <p class="agent-subquote">The mission keeps getting delayed.</p>
+                <p class="agent-description">You care deeply, but life, work, and timing keep pushing family moments to tomorrow.</p>
+                <div class="agent-card-footer"><span>Agent profile</span><b>CB-001</b></div>
+                <button class="agent-select" type="button" data-select-agent="akan-datang">Select this agent</button>
+              </div>
+            </div>
+          </article>
+          <article class="agent-profile-card" data-agent="zip-lip">
+            <div class="agent-card-top"><span class="agent-badge badge-teal">Agent Zip Lip</span><span>Confidential</span></div>
+            <div class="agent-profile-body">
+              <div class="agent-avatar" aria-hidden="true">🤐</div>
+              <div class="agent-profile-copy">
+                <span class="agent-label">Agent codename</span>
+                <h3>Agent Zip Lip</h3>
+                <p class="agent-quote">When I'm with my parents, I don't know what to say.</p>
+                <p class="agent-subquote">The silence is loud.</p>
+                <p class="agent-description">You want to connect, but conversations may feel awkward, short, or hard to start.</p>
+                <div class="agent-card-footer"><span>Agent profile</span><b>CB-002</b></div>
+                <button class="agent-select" type="button" data-select-agent="zip-lip">Select this agent</button>
+              </div>
+            </div>
+          </article>
+          <article class="agent-profile-card" data-agent="ice">
+            <div class="agent-card-top"><span class="agent-badge badge-clay">Agent Ice</span><span>Confidential</span></div>
+            <div class="agent-profile-body">
+              <div class="agent-avatar" aria-hidden="true">🧊</div>
+              <div class="agent-profile-copy">
+                <span class="agent-label">Agent codename</span>
+                <h3>Agent Ice</h3>
+                <p class="agent-quote">We talk often... but we don't really connect.</p>
+                <p class="agent-subquote">Frequent contact. Low warmth.</p>
+                <p class="agent-description">You may communicate often, but the emotional connection can still feel distant.</p>
+                <div class="agent-card-footer"><span>Agent profile</span><b>CB-003</b></div>
+                <button class="agent-select" type="button" data-select-agent="ice">Select this agent</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="directory" class="directory section-tan" aria-labelledby="directory-title">
+      <div class="container">
+        <div class="section-heading heading-row">
+          <div>
+            <span class="eyebrow">Activity directory</span>
+            <h2 id="directory-title">Find your next shared moment.</h2>
+            <p>Browse activities built for different energy levels, family styles, and available time.</p>
+          </div>
+          <div class="directory-controls">
+            <label class="search-box" for="activitySearch"><span class="sr-only">Search activities</span><span aria-hidden="true">⌕</span><input id="activitySearch" type="search" placeholder="Search activities..." /></label>
+          </div>
+        </div>
+        <div class="tag-row" id="directoryTags" role="tablist" aria-label="Filter by theme">
+          <button type="button" class="active" data-theme="all">All activities</button>
+          <button type="button" data-theme="cooking">Cooking</button>
+          <button type="button" data-theme="heritage">Heritage trails</button>
+          <button type="button" data-theme="arts">Arts & making</button>
+          <button type="button" data-theme="volunteering">Family volunteering</button>
+        </div>
+        <p id="directoryHint" class="directory-hint hidden"></p>
+        <div id="activityGrid" class="activity-grid"></div>
+        <p id="directoryEmpty" class="empty-state hidden">No activities match those filters. Try a wider search or <a href="#cocreate">create a tailored activity</a>.</p>
+      </div>
+    </section>
+
+    <section id="cocreate" class="cocreate" aria-labelledby="cocreate-title">
+      <div class="container">
+        <div class="section-heading light">
+          <span class="eyebrow">Co-create activity</span>
+          <h2 id="cocreate-title">Make the next idea yours.</h2>
+          <p>Request support for your family's constraints, then help the wider community decide what comes next.</p>
+        </div>
+        <div class="co-create-grid">
+          <form id="customForm" class="dark-form">
+            <h3>Request a tailored activity</h3>
+            <p>Our team can adapt for mobility, language, caring responsibilities, or confidence.</p>
+            <label>What would you enjoy together?<input name="idea" required placeholder="e.g. A gentle food memory session" /></label>
+            <label>What support or constraint should we plan for?<textarea name="constraints" rows="3" placeholder="Tell us about mobility, language, timing, or caregiving needs"></textarea></label>
+            <div class="inline-fields">
+              <label>Preferred language
+                <select name="language">
+                  <option>English</option>
+                  <option>中文</option>
+                  <option>Bahasa Melayu</option>
+                  <option>தமிழ்</option>
+                </select>
+              </label>
+              <label>Ideal group size
+                <select name="group">
+                  <option>2 people</option>
+                  <option>3–4 people</option>
+                  <option>5+ people</option>
+                </select>
+              </label>
+            </div>
+            <button class="button gold" type="submit">Send request <span aria-hidden="true">→</span></button>
+            <p id="customStatus" class="form-status" role="status"></p>
+          </form>
+          <div class="idea-board">
+            <div class="board-head">
+              <div>
+                <span class="eyebrow">Community board</span>
+                <h3>Propose & upvote</h3>
+              </div>
+              <button class="text-button" id="showIdeaForm" type="button">+ Propose an idea</button>
+            </div>
+            <form id="ideaForm" class="idea-form hidden">
+              <input name="title" required placeholder="Name your activity idea" aria-label="Idea title" />
+              <input name="description" placeholder="What would make it special?" aria-label="Idea description" />
+              <button class="button small-gold" type="submit">Post idea</button>
+            </form>
+            <div id="ideaList" class="idea-list"></div>
+            <div class="threshold">
+              <div><span>Community threshold</span><b>20 families needed</b></div>
+              <div class="threshold-track"><i id="thresholdProgress"></i></div>
+              <small>When an idea reaches the threshold, we will explore a pilot session.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey" class="journey section-cream" aria-labelledby="journey-title">
+      <div class="container">
+        <div class="section-heading heading-row">
+          <div>
+            <span class="eyebrow">My journey</span>
+            <h2 id="journey-title">Your family's small wins, visible.</h2>
+            <p>A private dashboard for the next step, the last reflection, and the routine you are building.</p>
+          </div>
+          <span class="journey-status"><i class="status-dot"></i> Private family view</span>
+        </div>
+        <div class="dashboard-grid">
+          <article class="dash-card next-mission">
+            <div class="card-label">Next up</div>
+            <h3>Prepare for your first shared mission</h3>
+            <p>Choose one small question to carry into your next activity: <em>“What did you enjoy when you were my age?”</em></p>
+            <button class="button outline" type="button" data-scroll="#directory">Choose an activity</button>
+          </article>
+          <article class="dash-card">
+            <div class="card-label">Routine pulse</div>
+            <div class="pulse-number">1 <small>shared moment</small></div>
+            <div class="pulse-track"><i style="width:25%"></i></div>
+            <p class="small-copy">One moment is enough to start. Keep the next one simple.</p>
+          </article>
+          <article class="dash-card reflection">
+            <div class="card-label">After your activity</div>
+            <h3>Reflection prompts</h3>
+            <ul>
+              <li>What felt easy today?</li>
+              <li>When did someone feel heard?</li>
+              <li>What would we repeat next time?</li>
+            </ul>
+            <button class="text-button" type="button" data-reflection>Open reflection →</button>
+          </article>
+        </div>
+        <div class="survey-strip">
+          <div>
+            <span class="eyebrow">Routine check-ins</span>
+            <h3>Track the shape of your shared time.</h3>
+          </div>
+          <div class="survey-list">
+            <button type="button" data-survey="Baseline"><b>Baseline</b><small>Before you begin</small></button>
+            <button type="button" data-survey="30-day"><b>30-day</b><small>Early rhythm</small></button>
+            <button type="button" data-survey="60-day"><b>60-day</b><small>Growing confidence</small></button>
+            <button type="button" data-survey="90-day"><b>90-day</b><small>Look back</small></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" class="resources section-tan" aria-labelledby="resources-title">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Take-home kits</span>
+          <h2 id="resources-title">Keep the connection going at home.</h2>
+          <p>Practical prompts for the days between activities. Download, print, or share with your family group.</p>
+        </div>
+        <div class="resource-grid">
+          <button class="resource-card" type="button" data-resource="Recipe card">
+            <span class="resource-icon" aria-hidden="true">✦</span>
+            <strong>Recipe cards</strong>
+            <p>Simple food activities that make room for stories.</p>
+            <span class="download-label">Download PDF ↘</span>
+          </button>
+          <button class="resource-card" type="button" data-resource="Conversation guide">
+            <span class="resource-icon" aria-hidden="true">◌</span>
+            <strong>Conversation guides</strong>
+            <p>Low-pressure prompts for different ages and comfort levels.</p>
+            <span class="download-label">Download PDF ↘</span>
+          </button>
+          <button class="resource-card" type="button" data-resource="Model-building instructions">
+            <span class="resource-icon" aria-hidden="true">△</span>
+            <strong>Model-building instructions</strong>
+            <p>Build, tinker, and talk with a shared focus.</p>
+            <span class="download-label">Download PDF ↘</span>
+          </button>
+        </div>
+        <div class="safeguarding">
+          <div class="safety-mark" aria-hidden="true">!</div>
+          <div>
+            <span class="eyebrow">Safeguarding support</span>
+            <h3>Some family situations need a trained person.</h3>
+            <p>If there is conflict, distress, or a concern about someone's safety, you can speak with our support team privately. We will listen and help you identify the next appropriate step.</p>
+          </div>
+          <div class="safety-actions">
+            <a class="button primary" href="tel:+6561234567">Call support</a>
+            <a class="button outline" href="mailto:support@captainbond.example">Email trained staff</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
-  <div id="activityModal" class="activity-modal hidden" role="dialog" aria-modal="true" aria-labelledby="activityModalTitle"><div class="activity-modal-backdrop" data-close-activity></div><div class="activity-modal-box"><div id="activityModalContent"></div></div></div>
-  <footer class="site-footer"><div><a class="brand footer-brand" href="#home"><span class="brand-mark">CB</span><span><b>CAPTAIN BOND</b><small>Family Mission Platform</small></span></a><p>Building bonds through small missions.</p></div><div class="footer-links"><a href="#directory">Activity Directory</a><a href="#agents">Agent profiles</a><a href="#resources">Safeguarding</a></div><small>REF: CB-FAMILY-MISSION-007 · © 2026 Captain Bond</small></footer>
-+  <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open Captain Bond assistant"><span>✦</span><b>Ask Bond</b></button><aside class="chat-widget" id="chatWidget" aria-label="Captain Bond assistant" aria-hidden="true"><div class="chat-head"><div><b>Bond assistant</b><small>Usually replies instantly</small></div><button id="chatClose" type="button" aria-label="Close assistant">×</button></div><div id="chatMessages" class="chat-messages"><div class="chat-message bot">Hello. I can help you find an activity, explain registration, or connect you with a support person.</div></div><div class="chat-suggestions"><button data-chat="Recommend an activity">Recommend an activity</button><button data-chat="How does registration work?">Registration help</button><button data-chat="I need safeguarding support">Safeguarding</button></div><form id="chatForm" class="chat-form"><input id="chatInput" placeholder="Ask a general question..." autocomplete="off" /><button type="submit" aria-label="Send message">↑</button></form></aside>
-+  <div id="toast" class="toast" role="status"></div><script src="script.js"></script>
-+</body>
-+</html>
+
+  <div id="activityModal" class="activity-modal hidden" role="dialog" aria-modal="true" aria-labelledby="activityModalTitle">
+    <div class="activity-modal-backdrop" data-close-activity></div>
+    <div class="activity-modal-box" role="document"><div id="activityModalContent"></div></div>
+  </div>
+
+  <footer class="site-footer">
+    <div>
+      <a class="brand footer-brand" href="#home">
+        <img class="brand-logo" src="images/captain-bond-logo.png" alt="Captain Bond" />
+        <span><b>CAPTAIN BOND</b><small>Family Mission Platform</small></span>
+      </a>
+      <p>Building bonds through small missions.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#directory">Activity Directory</a>
+      <a href="#agents">Agent profiles</a>
+      <a href="#resources">Safeguarding</a>
+    </div>
+    <small>REF: CB-FAMILY-MISSION-007 · © 2026 Captain Bond</small>
+  </footer>
+
+  <button class="chat-launcher" id="chatLauncher" type="button" aria-label="Open Captain Bond assistant" aria-expanded="false" aria-controls="chatWidget">
+    <span aria-hidden="true">✦</span><b>Ask Bond</b>
+  </button>
+  <aside class="chat-widget" id="chatWidget" aria-label="Captain Bond assistant" aria-hidden="true">
+    <div class="chat-head">
+      <div><b>Bond assistant</b><small>Usually replies instantly</small></div>
+      <button id="chatClose" type="button" aria-label="Close assistant">×</button>
+    </div>
+    <div id="chatMessages" class="chat-messages">
+      <div class="chat-message bot">Hello. I can help you find an activity, explain registration, or connect you with a support person.</div>
+    </div>
+    <div class="chat-suggestions">
+      <button type="button" data-chat="Recommend an activity">Recommend an activity</button>
+      <button type="button" data-chat="How does registration work?">Registration help</button>
+      <button type="button" data-chat="I need safeguarding support">Safeguarding</button>
+    </div>
+    <form id="chatForm" class="chat-form">
+      <input id="chatInput" placeholder="Ask a general question..." autocomplete="off" aria-label="Message the assistant" />
+      <button type="submit" aria-label="Send message">↑</button>
+    </form>
+  </aside>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
