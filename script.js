@@ -1,10 +1,10 @@
 const activities = [
-  { id: 1, title: "Dumpling Stories", theme: "cooking", meta: "60 min · 2–6 people", desc: "Make a family recipe together and record the story behind it.", tag: "Hands-on", brief: "Agents, craft 1 dumpling in 60 minutes. Precision mandatory. Failure if judged ‘Can be better.’", quote: "Tomorrow becomes today when the mission is only 60 minutes.", agentProfile: { name: "Agent Akan Datang", emoji: "⌛", quote: "I keep postponing family time, but this mission gives us a place to begin." } },
-  { id: 2, title: "Neighbourhood Memory Walk", theme: "heritage", meta: "45 min · Gentle pace", desc: "Follow a short route and swap memories about places that shaped you.", tag: "Low mobility", brief: "Agents, follow one familiar route and collect three memories. The mission succeeds when every voice gets room.", quote: "The places we know can open conversations we did not expect.", agentProfile: { name: "Agent Zip Lip", emoji: "🤐", quote: "A walk gives us something to talk about when words feel difficult." } },
-  { id: 3, title: "Build & Race", theme: "arts", meta: "60 min · 2–5 people", desc: "Build a model vehicle, then let friendly competition do the talking.", tag: "Creative", brief: "Agents, assemble and deploy your vehicle. Race to survive. Failure if immobilized.", quote: "Build together first. Talk naturally after.", agentProfile: { name: "Agent Ice", emoji: "🧊", quote: "Working side by side can warm up a connection that feels distant." } },
-  { id: 4, title: "Family Photo Lab", theme: "arts", meta: "15 min · Indoors", desc: "Take five photos that show what home feels like to each person.", tag: "Quick connect", brief: "Agents, take five photographs that show what home feels like. Share one story for each image.", quote: "Start small. Move before the awkwardness catches you.", agentProfile: { name: "Agent Zip Lip", emoji: "🤐", quote: "The camera gives us a gentle way to start the conversation." } },
-  { id: 5, title: "Warm Feet, Warm Hearts", theme: "volunteering", meta: "30 min · Flexible", desc: "Prepare a small care package for someone in your community.", tag: "Care-led", brief: "Agents, complete a warm care mission with patience and respect. Gentle actions count.", quote: "Care can say what words cannot.", agentProfile: { name: "Agent Akan Datang", emoji: "⌛", quote: "A small act of care can move from tomorrow into today." } },
-  { id: 6, title: "Letters Across Time", theme: "heritage", meta: "30 min · Quiet activity", desc: "Write a short letter to a family member, past or present.", tag: "Conversation", brief: "Agents, write a short message of love or appreciation. The mission fails only if the words remain unsent.", quote: "Words are easier when the mission gives them a shape.", agentProfile: { name: "Agent Ice", emoji: "🧊", quote: "A letter can hold the warmth that is hard to say aloud." } }
+  { id: 1, title: "Dumpling Stories", theme: "Taste of Heritage", meta: "60 min · 2–6 people", desc: "Make a family recipe together and record the story behind it.", tag: "Hands-on", brief: "Agents, craft 1 dumpling in 60 minutes. Precision mandatory. Failure if judged 'Can be better.'", quote: "Tomorrow becomes today when the mission is only 60 minutes.", agentProfile: { name: "Agent Akan Datang", emoji: "⌛", quote: "I keep postponing family time, but this mission gives us a place to begin." } },
+  { id: 2, title: "Warm Feet, Warm Hearts", theme: "Creative Adventures", meta: "45 min · Gentle pace", desc: "Follow a short route and swap memories about places that shaped you.", tag: "Low mobility", brief: "Agents, follow one familiar route and collect three memories. The mission succeeds when every voice gets room.", quote: "The places we know can open conversations we did not expect.", agentProfile: { name: "Agent Zip Lip", emoji: "🤐", quote: "A walk gives us something to talk about when words feel difficult." } },
+  { id: 3, title: "Model Racing Car Making", theme: "Little Champions Arena", meta: "60 min · 2–5 people", desc: "Build a model vehicle, then let friendly competition do the talking.", tag: "Creative", brief: "Agents, assemble and deploy your vehicle. Race to survive. Failure if immobilized.", quote: "Build together first. Talk naturally after.", agentProfile: { name: "Agent Ice", emoji: "🧊", quote: "Working side by side can warm up a connection that feels distant." } },
+  { id: 4, title: "Family Photo Lab", theme: "Creative Adventures", meta: "15 min · Indoors", desc: "Take five photos that show what home feels like to each person.", tag: "Quick connect", brief: "Agents, take five photographs that show what home feels like. Share one story for each image.", quote: "Start small. Move before the awkwardness catches you.", agentProfile: { name: "Agent Zip Lip", emoji: "🤐", quote: "The camera gives us a gentle way to start the conversation." } },
+  { id: 5, title: "Love Letter for Ah Ma", theme: "Creative Adventures", meta: "30 min · Flexible", desc: "Prepare a small care package for someone in your community.", tag: "Care-led", brief: "Agents, complete a warm care mission with patience and respect. Gentle actions count.", quote: "Care can say what words cannot.", agentProfile: { name: "Agent Akan Datang", emoji: "⌛", quote: "A small act of care can move from tomorrow into today." } },
+  { id: 6, title: "Massage", theme: "Creative Adventures", meta: "30 min · Quiet activity", desc: "Write a short letter to a family member, past or present.", tag: "Conversation", brief: "Agents, write a short message of love or appreciation. The mission fails only if the words remain unsent.", quote: "Words are easier when the mission gives them a shape.", agentProfile: { name: "Agent Ice", emoji: "🧊", quote: "A letter can hold the warmth that is hard to say aloud." } }
 ];
 // Edit each activity's visual card details here without changing the renderer.
 const activityPresentation = {
@@ -16,8 +16,13 @@ const activityPresentation = {
   6: { operation: "Deep Dive", fit: 78, spaces: 64, tags: ["30 min", "Memories", "Heartfelt"], image: "images/Massage.png" }
 };
 activities.forEach(activity => Object.assign(activity, activityPresentation[activity.id]));
-const themeNames = { cooking: "Cooking", heritage: "Heritage trails", arts: "Arts & making", volunteering: "Family volunteering" };
-const agentNames = { "akan-datang": "Agent Akan Datang", "zip-lip": "Agent Zip Lip", ice: "Agent Ice" };
+const themeNames = { cooking: "Taste of Heritage", arts: "Creative Adventures", volunteering: "Little Champions Arena" };
+const agentNames = { "akan-datang": "Agent Akan Datang", "zip-lip": "Agent Zip Lip", "ice": "Agent Ice" };
+const agentFitScores = {
+  "akan-datang": { 1: 96, 2: 74, 3: 82, 4: 86, 5: 92, 6: 78 },
+  "zip-lip": { 1: 82, 2: 90, 3: 78, 4: 96, 5: 84, 6: 88 },
+  "ice": { 1: 80, 2: 84, 3: 92, 4: 88, 5: 78, 6: 96 }
+};
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const esc = value => String(value ?? "").replace(/[&<>\"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;" }[char]));
@@ -28,6 +33,9 @@ let ideas = JSON.parse(localStorage.getItem("cb_ideas") || "null") || [
   { title: "Teach me your favourite song", description: "Families share one song and the memory attached to it.", votes: 9 },
   { title: "Intergenerational garden day", description: "Plant something together and return to see it grow.", votes: 6 }
 ];
+function getActivityFit(activity, agentId = localStorage.getItem("cb_agent")) {
+  return agentFitScores[agentId]?.[activity.id] ?? activity.fit;
+}
 function toast(message) { const element = $("#toast"); element.textContent = message; element.classList.add("show"); clearTimeout(toast.timer); toast.timer = setTimeout(() => element.classList.remove("show"), 3200); }
 function renderActivities() {
   const query = $("#activitySearch").value.trim().toLowerCase();
@@ -35,11 +43,11 @@ function renderActivities() {
   const selectedName = agentNames[selectedAgent];
   const list = activities
     .filter(activity => (activeTheme === "all" || activity.theme === activeTheme) && `${activity.title} ${activity.desc} ${activity.tag}`.toLowerCase().includes(query))
-    .sort((a, b) => Number(b.agentProfile?.name === selectedName) - Number(a.agentProfile?.name === selectedName));
+    .sort((a, b) => getActivityFit(b, selectedAgent) - getActivityFit(a, selectedAgent));
   $("#activityGrid").innerHTML = list.map(activity => {
+    const fit = getActivityFit(activity, selectedAgent);
     const recommended = selectedName && activity.agentProfile?.name === selectedName;
-    const badge = recommended ? `<strong class="top-fit">For you</strong>` : (activity.fit >= 85 ? `<strong class="top-fit">Top fit</strong>` : "");
-    return `<article class="activity-card${recommended ? " recommended" : ""}"><div class="activity-image theme-${activity.theme}" style="${activity.image ? `background-image:url('${esc(activity.image)}')` : ""}"><span>${activity.theme === "cooking" ? "✦" : activity.theme === "heritage" ? "◌" : activity.theme === "arts" ? "△" : "+"}</span><b>${themeNames[activity.theme]}</b>${badge}</div><div class="activity-body"><span class="card-label">${esc(activity.operation)}</span><h3>${esc(activity.title)}</h3><div class="fit-meter"><div><b>${activity.fit}%</b><span>Activity fit</span></div><i style="width:${activity.fit}%"></i></div><div class="activity-stats"><span><b>${esc(activity.meta.split("·")[0].trim())}</b><small>Time</small></span><span><b>2–8</b><small>Pax</small></span><span><b>${activity.fit}%</b><small>Fit</small></span></div><div class="availability-row"><span>Availability</span><b>${activity.spaces} spaces</b></div><div class="availability-track"><i style="width:${Math.min(100, activity.spaces / 64 * 100)}%"></i></div><div class="activity-agent"><span>${activity.agentProfile?.emoji || "✦"}</span><div><b>${esc(activity.agentProfile?.name || "Captain Bond")}</b><p>“${esc(activity.agentProfile?.quote || activity.quote)}”</p></div></div><div class="activity-tags">${(activity.tags || [activity.tag]).map(tag => `<span>${esc(tag)}</span>`).join("")}</div><button class="button primary full-button" data-register="${activity.id}">View activity brief <span>→</span></button></div></article>`;
+    return `<article class="activity-card${recommended ? " recommended" : ""}"><div class="activity-image theme-${activity.theme}" style="${activity.image ? `background-image:url('${esc(activity.image)}')` : ""}"><b>${esc(themeNames[activity.theme] || activity.theme)}</b></div><div class="activity-body"><span class="card-label">${esc(activity.operation)}</span><h3>${esc(activity.title)}</h3><div class="fit-meter"><div><b>${fit}%</b><span>Activity fit</span></div><i style="width:${fit}%"></i></div><div class="activity-stats"><span><b>${esc(activity.meta.split("·")[0].trim())}</b><small>Time</small></span><span><b>2–8</b><small>Pax</small></span><span><b>${fit}%</b><small>Fit</small></span></div><div class="availability-row"><span>Availability</span><b>${activity.spaces} spaces</b></div><div class="availability-track"><i style="width:${Math.min(100, activity.spaces / 64 * 100)}%"></i></div><div class="activity-agent"><span>${activity.agentProfile?.emoji || "✦"}</span><div><b>${esc(activity.agentProfile?.name || "Captain Bond")}</b><p>“${esc(activity.agentProfile?.quote || activity.quote)}”</p></div></div><div class="activity-tags">${(activity.tags || [activity.tag]).map(tag => `<span>${esc(tag)}</span>`).join("")}</div><button class="button primary full-button" data-register="${activity.id}">View activity brief <span>→</span></button></div></article>`;
   }).join("");
   $("#directoryEmpty").classList.toggle("hidden", !list.length);
   const hint = $("#directoryHint");
@@ -48,7 +56,7 @@ function renderActivities() {
     hint.classList.toggle("hidden", !selectedName);
   }
 }
-function renderIdeas() { const total = ideas.reduce((sum, idea) => sum + idea.votes, 0); $("#ideaList").innerHTML = ideas.map((idea, index) => `<article class="idea-row"><button class="vote-button ${votes[index] ? "voted" : ""}" data-vote="${index}" aria-label="Upvote ${esc(idea.title)}"><b>${idea.votes}</b><small>votes</small><span>↑</span></button><div><h4>${esc(idea.title)}</h4><p>${esc(idea.description || "Community proposal")}</p></div></article>`).join(""); $("#thresholdProgress").style.width = `${Math.min(100, total / 20 * 100)}%`; }
+function renderIdeas() { const total = ideas.reduce((sum, idea) => sum + idea.votes, 0); $("#ideaList").innerHTML = ideas.map((idea, index) => { const voted = Boolean(votes[index]); return `<article class="idea-row"><button class="vote-button ${voted ? "voted" : ""}" data-vote="${index}" aria-label="${voted ? "Remove vote from" : "Upvote"} ${esc(idea.title)}"><b>${idea.votes}</b><small>votes</small><span>↑</span></button><div><h4>${esc(idea.title)}</h4><p>${esc(idea.description || "Community proposal")}</p></div></article>`; }).join(""); $("#thresholdProgress").style.width = `${Math.min(100, total / 20 * 100)}%`; }
 function chatMessage(text, from = "bot") { const message = document.createElement("div"); message.className = `chat-message ${from}`; message.textContent = text; $("#chatMessages").append(message); $("#chatMessages").scrollTop = $("#chatMessages").scrollHeight; }
 function answer(question) { const query = question.toLowerCase(); if (query.includes("safeguard") || query.includes("unsafe") || query.includes("support")) return "You can contact our trained support team from Safeguarding Support. For immediate danger, contact local emergency services."; if (query.includes("register")) return "Choose an activity and use its registration option. Assisted Registration is available in the header if you would prefer a person to help."; if (query.includes("recommend") || query.includes("activity")) return "For a low-pressure start, try Family Photo Lab. For a longer shared task, Dumpling Stories is a popular choice."; return "I can help with activity recommendations, registration, accessibility questions, and safeguarding support."; }
 function go(selector) { $(selector)?.scrollIntoView({ behavior: "smooth", block: "start" }); }
@@ -63,7 +71,7 @@ function openActivityBrief(activity) {
   const selectedAgent = activity.agentProfile?.name || "Choose an agent profile";
   const selectedEmoji = activity.agentProfile?.emoji || "✦";
   const agentQuote = activity.agentProfile?.quote || activity.quote;
-  $("#activityModalContent").innerHTML = `<div class="activity-modal-head"><div><span class="eyebrow">${esc(activity.meta.split("·")[0].trim())}</span><h2 id="activityModalTitle">${esc(activity.title)}</h2></div><button class="modal-close" type="button" aria-label="Close activity brief" data-close-activity>×</button></div><div class="activity-modal-main"><div class="modal-activity-art theme-${activity.theme}" style="background-image:url('${esc(activity.image)}')"><span>${activity.theme === "cooking" ? "✦" : activity.theme === "heritage" ? "◌" : activity.theme === "arts" ? "△" : "+"}</span><b>${esc(themeNames[activity.theme])}</b></div><div class="mission-brief-box"><span class="eyebrow">Mission brief</span><p>${esc(activity.brief)}</p></div><div class="mission-agent-box"><span class="mission-agent-icon">${selectedEmoji}</span><div><b>${esc(selectedAgent)}</b><p>“${esc(agentQuote)}”</p></div></div><button class="button primary accept-mission" type="button" data-accept-activity="${activity.id}">Accept mission <span>→</span></button></div>`;
+  $("#activityModalContent").innerHTML = `<div class="activity-modal-head"><div><span class="eyebrow">${esc(activity.meta.split("·")[0].trim())}</span><h2 id="activityModalTitle">${esc(activity.title)}</h2></div><button class="modal-close" type="button" aria-label="Close activity brief" data-close-activity>×</button></div><div class="activity-modal-main"><div class="modal-activity-art theme-${activity.theme}" style="background-image:url('${esc(activity.image)}')"><b>${esc(themeNames[activity.theme] || activity.theme)}</b></div><div class="mission-brief-box"><span class="eyebrow">Mission brief</span><p>${esc(activity.brief)}</p></div><div class="mission-agent-box"><span class="mission-agent-icon">${selectedEmoji}</span><div><b>${esc(selectedAgent)}</b><p>“${esc(agentQuote)}”</p></div></div><button class="button primary accept-mission" type="button" data-accept-activity="${activity.id}">Accept mission <span>→</span></button></div>`;
   $("#activityModal").classList.remove("hidden");
   document.body.classList.add("modal-open");
 }
@@ -78,26 +86,11 @@ $("#activityModal").addEventListener("click", event => { if (event.target.matche
 document.addEventListener("keydown", event => {
   if (event.key !== "Escape") return;
   if (!$("#activityModal").classList.contains("hidden")) closeActivityModal();
-  else if ($("#chatWidget").classList.contains("open")) setChatOpen(false);
 });
-$("#customForm").addEventListener("submit", event => { event.preventDefault(); event.currentTarget.reset(); $("#customStatus").textContent = "Request received. A coordinator will review the details and reply with possible next steps."; toast("Tailored activity request sent"); });
+$("#customForm").addEventListener("submit", event => { event.preventDefault(); const form = new FormData(event.currentTarget); const details = [form.get("constraints") && `Support: ${form.get("constraints")}`, `Language: ${form.get("language")}`, `Group: ${form.get("group")}`].filter(Boolean).join(" · "); ideas.unshift({ title: form.get("idea"), description: details || "Community activity request", votes: 0 }); localStorage.setItem("cb_ideas", JSON.stringify(ideas)); event.currentTarget.reset(); $("#customStatus").textContent = "Request received and added to the community board."; renderIdeas(); toast("Your activity request is now open for community votes"); });
 $("#showIdeaForm").addEventListener("click", () => $("#ideaForm").classList.toggle("hidden"));
 $("#ideaForm").addEventListener("submit", event => { event.preventDefault(); const form = new FormData(event.currentTarget); ideas.unshift({ title: form.get("title"), description: form.get("description"), votes: 0 }); localStorage.setItem("cb_ideas", JSON.stringify(ideas)); event.currentTarget.reset(); event.currentTarget.classList.add("hidden"); renderIdeas(); toast("Your idea is now on the community board"); });
-$("#ideaList").addEventListener("click", event => { const button = event.target.closest("[data-vote]"); if (!button) return; const index = Number(button.dataset.vote); if (votes[index]) return toast("You have already voted for this idea"); ideas[index].votes++; votes[index] = true; localStorage.setItem("cb_votes", JSON.stringify(votes)); localStorage.setItem("cb_ideas", JSON.stringify(ideas)); renderIdeas(); });
-$$('[data-scroll]').forEach(button => button.addEventListener("click", () => go(button.dataset.scroll)));
-$$('[data-survey]').forEach(button => button.addEventListener("click", () => toast(`${button.dataset.survey} check-in placeholder opened.`)));
-$('[data-reflection]').addEventListener("click", () => toast("Reflection prompts are ready for your next activity."));
-$$('[data-resource]').forEach(button => button.addEventListener("click", () => toast(`${button.dataset.resource} download placeholder selected.`)));
-function setChatOpen(open) {
-  $("#chatWidget").classList.toggle("open", open);
-  $("#chatWidget").setAttribute("aria-hidden", String(!open));
-  $("#chatLauncher").setAttribute("aria-expanded", String(open));
-  if (open) $("#chatInput").focus();
-}
-$("#chatLauncher").addEventListener("click", () => setChatOpen(true));
-$("#chatClose").addEventListener("click", () => setChatOpen(false));
-$("#chatForm").addEventListener("submit", event => { event.preventDefault(); const input = $("#chatInput"); const question = input.value.trim(); if (!question) return; chatMessage(question, "user"); input.value = ""; setTimeout(() => chatMessage(answer(question)), 250); });
-$$('[data-chat]').forEach(button => button.addEventListener("click", () => { chatMessage(button.dataset.chat, "user"); setTimeout(() => chatMessage(answer(button.dataset.chat)), 250); }));
+$("#ideaList").addEventListener("click", event => { const button = event.target.closest("[data-vote]"); if (!button) return; const index = Number(button.dataset.vote); if (votes[index]) { ideas[index].votes = Math.max(0, ideas[index].votes - 1); delete votes[index]; } else { ideas[index].votes++; votes[index] = true; } localStorage.setItem("cb_votes", JSON.stringify(votes)); localStorage.setItem("cb_ideas", JSON.stringify(ideas)); renderIdeas(); });
 $$('[data-lang]').forEach(button => button.addEventListener("click", () => {
   $$('[data-lang]').forEach(item => {
     item.classList.remove("active");
@@ -135,6 +128,6 @@ if ("IntersectionObserver" in window && observed.length) {
   }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
   observed.forEach(section => spy.observe(section));
 }
-selectAgent(localStorage.getItem("cb_agent"), false);
+localStorage.removeItem("cb_agent");
 renderActivities();
 renderIdeas();
