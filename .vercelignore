@@ -1,0 +1,8 @@
+# Publish only the static website and its deployment configuration.
+/*
+!index.html
+!style.css
+!script.js
+!programmes.js
+!images/
+!vercel.json

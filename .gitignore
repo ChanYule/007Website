@@ -1,0 +1,8 @@
+# Local Vercel project link and credentials
+.vercel/
+
+# Local dependencies and environment files
+node_modules/
+.env
+.env.*
+!.env.example

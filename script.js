@@ -15,8 +15,8 @@ const activityPresentation = {
   5: { operation: "Lite Moments", fit: 82, spaces: 64, tags: ["15 min", "Care", "Family"], image: "https://media.base44.com/images/public/6a26606da56b24dec75ea012/b2fc4bf10_image.png" },
   6: { operation: "Deep Dive", fit: 78, spaces: 64, tags: ["30 min", "Memories", "Heartfelt"], image: "images/Massage.png" }
 };
-activities.forEach(activity => Object.assign(activity, activityPresentation[activity.id]));
-const themeNames = { cooking: "Taste of Heritage", arts: "Creative Adventures", volunteering: "Little Champions Arena" };
+activities.forEach(activity => Object.assign(activity, activityPresentation[activity.id], { categories: ["family", ...(activity.id === 1 ? ["cultural"] : []), ...(activity.id === 4 ? ["digital"] : [])] }));
+
 const agentNames = { "akan-datang": "Agent Akan Datang", "zip-lip": "Agent Zip Lip", "ice": "Agent Ice" };
 const agentFitScores = {
   "akan-datang": { 1: 96, 2: 74, 3: 82, 4: 86, 5: 92, 6: 78 },
@@ -41,18 +41,21 @@ function renderActivities() {
   const query = $("#activitySearch").value.trim().toLowerCase();
   const selectedAgent = localStorage.getItem("cb_agent");
   const selectedName = agentNames[selectedAgent];
+  const matches = item => (activeTheme === "all" || item.theme === activeTheme || item.categories?.includes(activeTheme)) && `${item.title} ${item.desc} ${item.tag || ""} ${item.theme || ""} ${(item.categories || []).join(" ")}`.toLowerCase().includes(query);
+  const programmes = scheduledProgrammes.filter(matches);
   const list = activities
-    .filter(activity => (activeTheme === "all" || activity.theme === activeTheme) && `${activity.title} ${activity.desc} ${activity.tag}`.toLowerCase().includes(query))
+    .filter(matches)
     .sort((a, b) => getActivityFit(b, selectedAgent) - getActivityFit(a, selectedAgent));
-  $("#activityGrid").innerHTML = list.map(activity => {
+  $("#activityGrid").innerHTML = programmes.map(renderProgrammeCard).join("") + list.map(activity => {
     const fit = getActivityFit(activity, selectedAgent);
     const recommended = selectedName && activity.agentProfile?.name === selectedName;
-    return `<article class="activity-card${recommended ? " recommended" : ""}"><div class="activity-image theme-${activity.theme}" style="${activity.image ? `background-image:url('${esc(activity.image)}')` : ""}"><b>${esc(themeNames[activity.theme] || activity.theme)}</b></div><div class="activity-body"><span class="card-label">${esc(activity.operation)}</span><h3>${esc(activity.title)}</h3><div class="fit-meter"><div><b>${fit}%</b><span>Activity fit</span></div><i style="width:${fit}%"></i></div><div class="activity-stats"><span><b>${esc(activity.meta.split("·")[0].trim())}</b><small>Time</small></span><span><b>2–8</b><small>Pax</small></span><span><b>${fit}%</b><small>Fit</small></span></div><div class="availability-row"><span>Availability</span><b>${activity.spaces} spaces</b></div><div class="availability-track"><i style="width:${Math.min(100, activity.spaces / 64 * 100)}%"></i></div><div class="activity-agent"><span>${activity.agentProfile?.emoji || "✦"}</span><div><b>${esc(activity.agentProfile?.name || "Captain Bond")}</b><p>“${esc(activity.agentProfile?.quote || activity.quote)}”</p></div></div><div class="activity-tags">${(activity.tags || [activity.tag]).map(tag => `<span>${esc(tag)}</span>`).join("")}</div><button class="button primary full-button" data-register="${activity.id}">View activity brief <span>→</span></button></div></article>`;
+    return `<article class="activity-card${recommended ? " recommended" : ""}"><div class="activity-image theme-${activity.theme}" style="${activity.image ? `background-image:url('${esc(activity.image)}')` : ""}"><b>${esc(activity.theme)}</b></div><div class="activity-body"><span class="card-label">${esc(activity.operation)}</span><h3>${esc(activity.title)}</h3><div class="fit-meter"><div><b>${fit}%</b><span>Activity fit</span></div><i style="width:${fit}%"></i></div><div class="activity-stats"><span><b>${esc(activity.meta.split("·")[0].trim())}</b><small>Time</small></span><span><b>2–8</b><small>Pax</small></span><span><b>${fit}%</b><small>Fit</small></span></div><div class="availability-row"><span>Availability</span><b>${activity.spaces} spaces</b></div><div class="availability-track"><i style="width:${Math.min(100, activity.spaces / 64 * 100)}%"></i></div><div class="activity-agent"><span>${activity.agentProfile?.emoji || "✦"}</span><div><b>${esc(activity.agentProfile?.name || "Captain Bond")}</b><p>“${esc(activity.agentProfile?.quote || activity.quote)}”</p></div></div><div class="activity-tags">${(activity.tags || [activity.tag]).map(tag => `<span>${esc(tag)}</span>`).join("")}</div><button class="button primary full-button" data-register="${activity.id}">View activity brief <span>→</span></button></div></article>`;
   }).join("");
-  $("#directoryEmpty").classList.toggle("hidden", !list.length);
+  $("#directoryEmpty").classList.toggle("hidden", Boolean(list.length + programmes.length));
+  $("#directoryResults").textContent = `${list.length + programmes.length} activities and programmes found.`;
   const hint = $("#directoryHint");
   if (hint) {
-    hint.textContent = selectedName ? `Showing ${selectedName} recommendations first.` : "";
+    hint.textContent = selectedName ? `Featured programmes appear first; regular activities are ordered for ${selectedName}.` : "";
     hint.classList.toggle("hidden", !selectedName);
   }
 }
@@ -64,26 +67,40 @@ setTimeout(() => $("#loadingScreen")?.classList.add("hide"), 800);
 window.addEventListener("load", () => $("#loadingScreen")?.classList.add("hide"));
 $("#menuToggle").addEventListener("click", () => { const nav = $("#mainNav"); const open = nav.classList.toggle("open"); $("#menuToggle").setAttribute("aria-expanded", open); });
 $$('#mainNav a').forEach(link => link.addEventListener("click", () => $("#mainNav").classList.remove("open")));
-$("#assistButton").addEventListener("click", () => toast("Assisted Registration: call +65 6123 4567 or email support@captainbond.example"));
+$("#assistButton").addEventListener("click", () => { go("#directory"); toast("For scheduled programmes, open View Programme and choose a date to find the official registration number."); });
 $("#activitySearch").addEventListener("input", renderActivities);
-$$("#directoryTags button").forEach(button => button.addEventListener("click", () => { activeTheme = button.dataset.theme; $$("#directoryTags button").forEach(item => item.classList.toggle("active", item === button)); renderActivities(); }));
+$$("#directoryTags button").forEach(button => button.addEventListener("click", () => { activeTheme = button.dataset.theme; $$("#directoryTags button").forEach(item => (item.classList.toggle("active", item === button), item.setAttribute("aria-pressed", String(item === button)))); renderActivities(); }));
+let modalReturnFocus;
+function showActivityModal() {
+  const modal = $("#activityModal");
+  if (modal.classList.contains("hidden")) modalReturnFocus = document.activeElement;
+  modal.classList.remove("hidden");
+  document.body.classList.add("modal-open");
+  $$("body > header, body > main, body > footer").forEach(element => element.inert = true);
+  $(".activity-modal-box").scrollTop = 0;
+  $(".modal-close").focus({ preventScroll: true });
+}
 function openActivityBrief(activity) {
   const selectedAgent = activity.agentProfile?.name || "Choose an agent profile";
   const selectedEmoji = activity.agentProfile?.emoji || "✦";
   const agentQuote = activity.agentProfile?.quote || activity.quote;
-  $("#activityModalContent").innerHTML = `<div class="activity-modal-head"><div><span class="eyebrow">${esc(activity.meta.split("·")[0].trim())}</span><h2 id="activityModalTitle">${esc(activity.title)}</h2></div><button class="modal-close" type="button" aria-label="Close activity brief" data-close-activity>×</button></div><div class="activity-modal-main"><div class="modal-activity-art theme-${activity.theme}" style="background-image:url('${esc(activity.image)}')"><b>${esc(themeNames[activity.theme] || activity.theme)}</b></div><div class="mission-brief-box"><span class="eyebrow">Mission brief</span><p>${esc(activity.brief)}</p></div><div class="mission-agent-box"><span class="mission-agent-icon">${selectedEmoji}</span><div><b>${esc(selectedAgent)}</b><p>“${esc(agentQuote)}”</p></div></div><button class="button primary accept-mission" type="button" data-accept-activity="${activity.id}">Accept mission <span>→</span></button></div>`;
-  $("#activityModal").classList.remove("hidden");
-  document.body.classList.add("modal-open");
+  $("#activityModalContent").innerHTML = `<div class="activity-modal-head"><div><span class="eyebrow">${esc(activity.meta.split("·")[0].trim())}</span><h2 id="activityModalTitle">${esc(activity.title)}</h2></div><button class="modal-close" type="button" aria-label="Close activity brief" data-close-activity>×</button></div><div class="activity-modal-main"><div class="modal-activity-art theme-${activity.theme}" style="background-image:url('${esc(activity.image)}')"><b>${esc(activity.theme)}</b></div><div class="mission-brief-box"><span class="eyebrow">Mission brief</span><p>${esc(activity.brief)}</p></div><div class="mission-agent-box"><span class="mission-agent-icon">${selectedEmoji}</span><div><b>${esc(selectedAgent)}</b><p>“${esc(agentQuote)}”</p></div></div><button class="button primary accept-mission" type="button" data-accept-activity="${activity.id}">Accept mission <span>→</span></button></div>`;
+  showActivityModal();
 }
-function closeActivityModal() { $("#activityModal").classList.add("hidden"); document.body.classList.remove("modal-open"); }
+function closeActivityModal() { $("#activityModal").classList.add("hidden"); document.body.classList.remove("modal-open"); $$("body > header, body > main, body > footer").forEach(element => element.inert = false); modalReturnFocus?.focus({ preventScroll: true }); }
 function openRegistration(activity) {
-  $("#activityModalContent").innerHTML = `<div class="activity-modal-head"><div><span class="eyebrow">${esc(activity.meta.split("·")[0].trim())}</span><h2>Mission Registration</h2><p>Fill in your details to reserve your mission slot.</p></div><button class="modal-close" type="button" aria-label="Close registration" data-close-activity>×</button></div><div class="activity-modal-main registration-main"><div class="registration-steps"><i></i><i></i><i></i></div><label class="modal-label">Number of people attending</label><div class="pax-controls"><button type="button" data-pax="-1">−</button><b id="modalPax">1</b><button type="button" data-pax="1">+</button></div><label class="modal-label">Preferred time slot</label><div class="modal-times">${["1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM"].map(time => `<button type="button">${time}<small>8 left</small></button>`).join("")}</div><label class="modal-label">Contact method</label><div class="contact-toggle"><button type="button" class="active">Phone</button><button type="button">Instagram</button></div><input class="modal-input" placeholder="Enter 8-digit phone number" /><button class="button primary accept-mission" type="button" data-complete-registration>Confirm registration</button></div>`;
-  $("#activityModal").classList.remove("hidden");
-  document.body.classList.add("modal-open");
+  $("#activityModalContent").innerHTML = `<div class="activity-modal-head"><div><span class="eyebrow">${esc(activity.meta.split("·")[0].trim())}</span><h2 id="activityModalTitle">Mission Registration</h2><p>Fill in your details to reserve your mission slot.</p></div><button class="modal-close" type="button" aria-label="Close registration" data-close-activity>×</button></div><div class="activity-modal-main registration-main"><div class="registration-steps"><i></i><i></i><i></i></div><label class="modal-label">Number of people attending</label><div class="pax-controls"><button type="button" data-pax="-1">−</button><b id="modalPax">1</b><button type="button" data-pax="1">+</button></div><label class="modal-label">Preferred time slot</label><div class="modal-times">${["1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM"].map(time => `<button type="button">${time}<small>8 left</small></button>`).join("")}</div><label class="modal-label">Contact method</label><div class="contact-toggle"><button type="button" class="active">Phone</button><button type="button">Instagram</button></div><input class="modal-input" placeholder="Enter 8-digit phone number" /><button class="button primary accept-mission" type="button" data-complete-registration>Confirm registration</button></div>`;
+  showActivityModal();
 }
-$("#activityGrid").addEventListener("click", event => { const button = event.target.closest("[data-register]"); if (!button) return; const activity = activities.find(item => item.id === Number(button.dataset.register)); openActivityBrief(activity); });
+$("#activityGrid").addEventListener("click", event => { const programmeButton = event.target.closest("[data-programme]"); if (programmeButton) { openProgramme(scheduledProgrammes.find(item => item.id === programmeButton.dataset.programme)); return; } const button = event.target.closest("[data-register]"); if (!button) return; const activity = activities.find(item => item.id === Number(button.dataset.register)); openActivityBrief(activity); });
 $("#activityModal").addEventListener("click", event => { if (event.target.matches("[data-close-activity]")) closeActivityModal(); const accept = event.target.closest("[data-accept-activity]"); if (accept) openRegistration(activities.find(item => item.id === Number(accept.dataset.acceptActivity))); const pax = event.target.closest("[data-pax]"); if (pax) { const value = Math.max(1, Math.min(8, Number($("#modalPax").textContent) + Number(pax.dataset.pax))); $("#modalPax").textContent = value; } const time = event.target.closest(".modal-times button"); if (time) { $$(".modal-times button").forEach(button => button.classList.remove("active")); time.classList.add("active"); } const contact = event.target.closest(".contact-toggle button"); if (contact) { $$(".contact-toggle button").forEach(button => button.classList.remove("active")); contact.classList.add("active"); } if (event.target.closest("[data-complete-registration]")) { closeActivityModal(); toast("Registration request saved. Our team will follow up with the next steps."); } });
 document.addEventListener("keydown", event => {
+  if (event.key === "Tab" && !$("#activityModal").classList.contains("hidden")) {
+    const controls = $$('button:not(:disabled), a[href], input, select, textarea', $("#activityModalContent")).filter(element => element.getClientRects().length);
+    const first = controls[0], last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }
   if (event.key !== "Escape") return;
   if (!$("#activityModal").classList.contains("hidden")) closeActivityModal();
 });
@@ -128,6 +145,17 @@ if ("IntersectionObserver" in window && observed.length) {
   }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
   observed.forEach(section => spy.observe(section));
 }
-localStorage.removeItem("cb_agent");
+selectAgent(localStorage.getItem("cb_agent"), false);
 renderActivities();
 renderIdeas();
+
+$("#clearFilters").addEventListener("click", () => {
+  activeTheme = "all";
+  $("#activitySearch").value = "";
+  $$("#directoryTags button").forEach(button => {
+    const active = button.dataset.theme === "all";
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+  renderActivities();
+});

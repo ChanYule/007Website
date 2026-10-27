@@ -1232,3 +1232,69 @@ body:has(.loading-screen:not(.hide)) { overflow: hidden; }
     animation: none !important;
   }
 }
+
+/* Scheduled family programmes use factual details, separate from mission fit scores. */
+.directory-notice { padding: 20px 24px; margin: 8px 0 12px; background: var(--paper); border-left: 4px solid var(--teal); border-radius: 0 14px 14px 0; }
+.directory-notice p { margin: 6px 0 0; color: var(--ink-soft); }
+#clearFilters { margin-bottom: 20px; text-decoration: underline; min-height: 44px; }
+.activity-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.activity-card { min-width: 0; }
+.programme-rose { --programme-accent: #96324e; --programme-soft: #fbe5ec; }
+.programme-sky { --programme-accent: #1b5078; --programme-soft: #e1f1fb; }
+.programme-card { border-top: 4px solid var(--programme-accent); background: var(--paper); }
+.programme-art { position: relative; background: var(--programme-soft); }
+.programme-art img { display: block; width: 100%; height: 200px; object-fit: cover; }
+.programme-featured { position: absolute; top: 12px; left: 14px; padding: 5px 10px; border-radius: 99px; color: var(--programme-accent); background: var(--paper); font-size: 12px; font-weight: 800; }
+.programme-card .card-label { color: var(--programme-accent); letter-spacing: .08em; line-height: 1.6; }
+.programme-card h3 { font-size: 29px; margin-bottom: 14px; }
+.programme-desc { font-size: 15px; color: var(--ink-soft); }
+.programme-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.programme-badges span { background: var(--programme-soft); color: var(--programme-accent); padding: 5px 10px; border-radius: 8px; font-weight: 800; font-size: 14px; }
+.programme-facts { margin: 0; font-size: 14px; }
+.programme-facts div { margin-bottom: 12px; }
+.programme-facts dt { color: var(--programme-accent); font-size: 12px; font-weight: 800; text-transform: uppercase; }
+.programme-facts dd { margin: 2px 0 0; }
+.programme-capacity { padding: 12px; background: var(--programme-soft); border-radius: 10px; font-size: 14px; margin-top: 8px; }
+.programme-capacity small { font-size: 13px; }
+.programme-card .full-button { background: var(--programme-accent); border-color: var(--programme-accent); }
+.programme-details { color: var(--ink); background: var(--paper); }
+.programme-details .activity-modal-head { background: var(--programme-soft); }
+.programme-details .eyebrow { color: var(--programme-accent); }
+.programme-details h3 { font-size: 25px; margin: 28px 0 12px; }
+.programme-detail-image { display: block; width: 100%; border-radius: 14px; }
+.programme-details address { font-style: normal; }
+.programme-highlights { list-style: none; padding: 0; }
+.programme-highlights li { display: flex; gap: 12px; margin: 12px 0; }
+.programme-highlights span { flex: 0 0 28px; text-align: center; color: var(--programme-accent); background: var(--programme-soft); border-radius: 6px; }
+.programme-field { display: grid; gap: 8px; font-weight: 700; }
+.programme-field select { width: 100%; min-width: 0; min-height: 48px; padding: 12px; color: var(--ink); background: var(--paper); border: 1px solid var(--programme-accent); border-radius: 10px; }
+.programme-date-list { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; font-size: 14px; }
+.programme-date-list li { padding: 7px 10px; background: var(--programme-soft); border-radius: 8px; }
+.programme-registration { background: var(--programme-soft); padding: 20px; border-radius: 14px; margin-top: 28px; scroll-margin-top: 16px; }
+.programme-registration h3 { margin-top: 0; }
+.programme-summary { margin-top: 18px; padding: 14px; border: 1px solid var(--programme-accent); border-radius: 10px; background: var(--paper); }
+.programme-call { display: flex; min-height: 48px; text-align: center; background: var(--programme-accent); white-space: normal; }
+.programme-contact { text-decoration: underline; font-weight: 800; }
+.programme-supporters { font-size: 14px; margin-top: 28px; color: var(--ink-soft); }
+.modal-close { min-width: 44px; min-height: 44px; color: var(--navy); }
+.activity-modal-box { max-height: 94dvh; overscroll-behavior: contain; }
+.search-box:focus-within { outline: 3px solid var(--teal); outline-offset: 3px; }
+.tag-row button { min-height: 44px; }
+.programme-details :focus-visible { outline-color: var(--programme-accent); }
+@media (max-width: 1100px) and (min-width: 701px) {
+  .site-header { flex-wrap: wrap; }
+  .header-tools { margin-left: auto; }
+  .main-nav { order: 3; flex-basis: 100%; }
+}
+@media (max-width: 560px) {
+  .activity-modal-box { max-height: 96dvh; }
+  .programme-registration { padding: 16px; }
+  .programme-details h2 { font-size: 32px; }
+  .programme-details .activity-modal-head { gap: 10px; }
+  .programme-field select { font-size: 14px; }
+  .directory-controls, .search-box, .search-box input { min-width: 0; }
+}
+.programme-shortcut { position: sticky; top: 10px; z-index: 2; width: 100%; min-height: 48px; background: var(--programme-accent); border-color: var(--programme-accent); box-shadow: 0 3px 12px #142c3d20; }
+#programmeSession { scroll-margin-top: 80px; }
+#clearFilters { color: var(--navy); }
+.toast:empty { visibility: hidden; }

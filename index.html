@@ -171,15 +171,20 @@
             <label class="search-box" for="activitySearch"><span class="sr-only">Search activities</span><span aria-hidden="true">⌕</span><input id="activitySearch" type="search" placeholder="Search activities..." /></label>
           </div>
         </div>
-        <div class="tag-row" id="directoryTags" role="tablist" aria-label="Filter by theme">
-          <button type="button" class="active" data-theme="all">All activities</button>
-          <button type="button" data-theme="cooking">Cooking</button>
-          <button type="button" data-theme="heritage">Heritage trails</button>
-          <button type="button" data-theme="arts">Arts & making</button>
-          <button type="button" data-theme="volunteering">Family volunteering</button>
+        <div class="tag-row" id="directoryTags" role="group" aria-label="Filter by theme">
+          <button type="button" class="active" data-theme="all" aria-pressed="true">All activities</button>
+          <button type="button" data-theme="Taste of Heritage" aria-pressed="false">Taste of Heritage</button>
+          <button type="button" data-theme="Creative Adventures" aria-pressed="false">Creative Adventures</button>
+          <button type="button" data-theme="Little Champions Arena" aria-pressed="false">Little Champions Arena</button>
+          <button type="button" data-theme="digital" aria-pressed="false">Digital creativity</button>
+          <button type="button" data-theme="cultural" aria-pressed="false">Cultural discovery</button>
+          <button type="button" data-theme="family" aria-pressed="false">Family bonding</button>
         </div>
+        <div class="directory-notice"><span class="eyebrow">Featured family programmes</span><p>Two hours to create, discover and connect. Free sessions for senior parents and adult children, from November 2026 to January 2027. Advance telephone registration required.</p></div>
+        <button type="button" id="clearFilters" class="text-button">Clear search &amp; filters</button>
         <p id="directoryHint" class="directory-hint hidden"></p>
         <div id="activityGrid" class="activity-grid"></div>
+        <p id="directoryResults" class="sr-only" role="status"></p>
         <p id="directoryEmpty" class="empty-state hidden">No activities match those filters. Try a wider search or <a href="#cocreate">create a tailored activity</a>.</p>
       </div>
     </section>
@@ -264,6 +269,7 @@
   </footer>
 
   <div id="toast" class="toast" role="status"></div>
+  <script src="programmes.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
