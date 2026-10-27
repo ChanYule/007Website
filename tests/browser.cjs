@@ -1,4 +1,4 @@
-﻿// Optional browser regression: set PLAYWRIGHT_MODULE to an installed playwright or playwright-core module.
+// Optional browser regression: set PLAYWRIGHT_MODULE to an installed playwright or playwright-core module.
 const assert = require('node:assert/strict');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 (async () => {
@@ -26,6 +26,16 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
    check(await page.locator('.fit-meter').count() === 0, 'no invented fit scores');
    await page.locator(`[data-programme="${id}"]`).click();
    check(await page.locator('#activityModalTitle').textContent() === title, 'correct details');
+   await page.locator('.programme-detail-image').evaluate(image => image.decode());
+   check(await page.locator('.programme-detail-image').evaluate(image => image.naturalWidth === 768 && image.naturalHeight === 2048), 'original full-resolution poster loads');
+   check(await page.locator('.programme-detail-image').evaluate(image => getComputedStyle(image).objectFit === 'contain'), 'details poster is uncropped');
+   const posterLink = page.locator('.programme-poster-link');
+   check(await posterLink.getAttribute('href') === await page.locator('.programme-art img').getAttribute('src'), 'full poster link matches selected programme');
+   const [posterTab] = await Promise.all([page.waitForEvent('popup'), posterLink.click()]);
+   await posterTab.waitForLoadState('load');
+   check(await posterTab.locator('img').evaluate(image => image.complete && image.naturalWidth === 768 && image.naturalHeight === 2048), 'full poster opens original image in new tab');
+   await posterTab.close();
+
    check(await page.locator('.programme-date-list li').count() === dates, 'all advertised dates shown');
    const content = await page.locator('#activityModalContent').textContent();
    for(const detail of [phone,address,'1:30 PM to 3:30 PM','FREE','Maximum 4 family dyads']) check(content.includes(detail),`detail ${detail}`);

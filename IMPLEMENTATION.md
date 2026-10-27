@@ -1,15 +1,15 @@
-﻿# Programme implementation report
+# Programme implementation report
 
 Both **Memories Meet Digital** and **Travelling without Borders** are added to the existing Captain Bond Activity Directory. All six original activities remain, with unchanged IDs, mission briefs and agent fit scores. Featured programme cards use factual information rather than fabricated recommendations or remaining vacancies.
 
-- Added `programmes.js`, two local SVG illustrations in `images/`, and two regression scripts in `tests/`.
+- Added `programmes.js`, the two supplied original PNG posters in `images/`, and two regression scripts in `tests/`.
 - Updated `index.html`, `script.js`, `style.css` and `README.md`.
 - Fixed theme filters to match existing category names, added digital/cultural/family facets and a clear action, corrected empty results visibility, and restored saved agent selections instead of deleting them on load.
 - Added keyboard focus trapping, background inertness, focus return, close-button, backdrop and Escape closing. Programme details scroll within the existing modal. Session selection and a telephone summary are on the same screen.
 
 ## Registration
 
-No original posters or verified programme registration URLs were present in the project or supplied attachment. The Apps Script source exists, but the website does not actually submit to it; its deployed service and spreadsheet were not verified. Its configuration and columns were left unchanged.
+The original posters are now supplied and displayed uncropped in the cards and details, with a View Full Poster link for full-size viewing and scanning their original QR codes. No registration URLs have been extracted or independently verified. The Apps Script source exists, but the website does not actually submit to it; its deployed service and spreadsheet were not verified. Its configuration and columns were left unchanged.
 
 The new programmes therefore use clearly labelled telephone registration at **8687 0039** (Memories) and **6347 2801** (Travelling). Families select a date and 1–4 family dyads, then read the selected programme, date, fixed time, full venue and dyad/people count to staff. Staff collect name/contact details directly and confirm availability. No personal contact data is collected or stored in the browser, and no success message or reservation is generated. Invalid or elapsed session selections cannot produce a valid booking summary; telephone enquiries remain available.
 
@@ -22,7 +22,7 @@ All **15 supplied sessions** are retained as explicit ISO calendar dates in Asia
 ## Verification results
 
 - **2/2 Node tests passed:** all 15 advertised dates, official addresses and numbers, fixed hours, fee/capacity, Singapore midnight boundary, session-start cutoff and Wednesday dates.
-- **98 browser checks passed in headless Chromium:** cards/images, search, all filter groups, empty/clear states, detail content, session/dyad summaries and invalid selections, official telephone targets, all six original mission briefs, agent sorting and persistence, community voting/persistence, unrelated localStorage retention, focus trapping/return, Escape/button/backdrop closing, and past-session retention.
+- **106 browser checks passed in headless Chromium:** cards/images, original poster dimensions and uncropped display, matching full-poster links opening the original images in new tabs, search, all filter groups, empty/clear states, detail content, session/dyad summaries and invalid selections, official telephone targets, all six original mission briefs, agent sorting and persistence, community voting/persistence, unrelated localStorage retention, focus trapping/return, Escape/button/backdrop closing, and past-session retention.
 - Page and both programme modals checked at **320, 375, 768, 1024 and 1440px** with no clipped visible elements or horizontal overflow.
 - JavaScript syntax checks passed. No browser JavaScript errors or missing local asset responses in the regression run. Original externally hosted activity images loaded during visual inspection; their ongoing hosting is external.
 - Desktop directory and mobile modal screenshots were visually inspected. These checks used a local HTTP server and desktop Chromium emulation, not physical phones/tablets or a production deployment.

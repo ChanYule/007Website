@@ -1,4 +1,4 @@
-﻿// Advertised dates are explicit Singapore calendar dates; never infer recurrence.
+// Advertised dates are explicit Singapore calendar dates; never infer recurrence.
 const scheduledProgrammes = [
   {
     id: "memories-meet-digital", type: "scheduled-programme", accent: "rose",
@@ -10,7 +10,7 @@ const scheduledProgrammes = [
     sessions: ["2026-11-12", "2026-11-19", "2026-11-26", "2026-12-10", "2026-12-17", "2026-12-23", "2026-12-30", "2027-01-06"],
     venue: { name: "Tzu Chi SEEN @ Bukit Batok (Golden Daisy)", street: "230A Bukit Batok Street 21", unit: "#02-423", postal: "651230" },
     contact: { display: "8687 0039", telephone: "+6586870039" },
-    image: "images/memories-meet-digital.svg", imageAlt: "Illustration of a senior parent and adult child sharing family photographs and a digital collage"
+    image: "images/Memories%20Meet%20Digital.png", imageAlt: "Original Memories Meet Digital programme poster with family keepsake activities, session details and registration QR code"
   },
   {
     id: "travelling-without-borders", type: "scheduled-programme", accent: "sky",
@@ -22,7 +22,7 @@ const scheduledProgrammes = [
     sessions: ["2026-11-30", "2026-12-02", "2026-12-03", "2026-12-07", "2026-12-09", "2026-12-10", "2027-01-06"],
     venue: { name: "GLOW Bukit Batok", street: "212 Bukit Batok Street 21", unit: "#01-237", postal: "650212" },
     contact: { display: "6347 2801", telephone: "+6563472801" },
-    image: "images/travelling-without-borders.svg", imageAlt: "Illustration of a senior parent and adult child exploring world destinations together on a laptop"
+    image: "images/Travelling%20Without%20Borders.png", imageAlt: "Original Travelling without Borders programme poster with virtual travel activities, session details and registration QR code"
   }
 ].map(programme => ({
   ...programme, timezone: "Asia/Singapore", startTime: "13:30", endTime: "15:30", durationMinutes: 120,
@@ -50,7 +50,7 @@ function programmeTime(programme) {
 function renderProgrammeCard(programme) {
   const ended = programme.sessions.every(date => sessionUnavailable(programme, date));
   return `<article class="activity-card programme-card programme-${programme.accent}">
-    <div class="programme-art"><img src="${programme.image}" alt="${programme.imageAlt}" /><span class="programme-featured">Featured programme</span></div>
+    <div class="programme-art"><span class="programme-featured">Featured programme</span><img src="${programme.image}" alt="${programme.imageAlt}" width="768" height="2048" loading="lazy" /></div>
     <div class="activity-body"><span class="card-label">${esc(programme.categoryLabel)}</span><h3>${esc(programme.title)}</h3>
       <p class="programme-desc">${esc(programme.desc)}</p>
       <div class="programme-badges"><span>FREE</span><span>2 hours per session</span></div>
@@ -64,7 +64,7 @@ function renderProgrammeCard(programme) {
 function openProgramme(programme) {
   $("#activityModalContent").innerHTML = `<div class="programme-details programme-${programme.accent}">
     <div class="activity-modal-head"><div><span class="eyebrow">Featured family programme · FREE</span><h2 id="activityModalTitle">${esc(programme.title)}</h2></div><button class="modal-close" type="button" aria-label="Close programme details" data-close-activity>×</button></div>
-    <div class="activity-modal-main"><img class="programme-detail-image" src="${programme.image}" alt="${programme.imageAlt}" />
+    <div class="activity-modal-main"><figure class="programme-poster"><img class="programme-detail-image" src="${programme.image}" alt="${programme.imageAlt}" width="768" height="2048" /><figcaption><a class="programme-poster-link" href="${programme.image}" target="_blank" rel="noopener">View Full Poster <span class="sr-only">for ${esc(programme.title)} (opens in a new tab)</span><span aria-hidden="true">&nearr;</span></a><p>Open the original poster to zoom in or scan its registration QR code.</p></figcaption></figure>
       <h3 class="programme-subtitle">${esc(programme.subtitle)}</h3><p>${esc(programme.description)}</p>
       <button class="button primary programme-shortcut" type="button" data-programme-dates>Choose a date &amp; register by phone &darr;</button>
       <h3>What you’ll do together</h3><ul class="programme-highlights">${programme.highlights.map(([icon, text]) => `<li><span aria-hidden="true">${icon}</span>${esc(text)}</li>`).join("")}</ul>
@@ -78,7 +78,7 @@ function openProgramme(programme) {
       <section class="programme-registration" aria-labelledby="phoneRegistrationTitle"><h3 id="phoneRegistrationTitle">Register by telephone</h3><p>Choose a date and the number of family dyads below. Call staff with this summary and give them your name and contact number to request a booking.</p>
         <label class="programme-field" for="programmeDyads">Number of family dyads<select id="programmeDyads">${[1, 2, 3, 4].map(count => `<option value="${count}">${count} ${count === 1 ? "dyad" : "dyads"} · ${count * 2} people</option>`).join("")}</select></label>
         <p id="programmeBookingSummary" class="programme-summary" role="status">Choose a session date above to prepare your telephone registration.</p>
-        <p>This website does not submit or reserve a booking. Staff must confirm your place by telephone. Your contact details are shared directly with staff during the call.</p>
+        <p>You can also open the full poster above and scan its original registration QR code.</p><p>This website does not submit or reserve a booking. Staff must confirm your place by telephone. Your contact details are shared directly with staff during the call.</p>
         <a class="button primary programme-call" href="tel:${programme.contact.telephone}">Call ${programme.contact.display} to register / enquire</a>
       </section>
       <h3>Contact</h3><p>Registration and enquiries: <a class="programme-contact" href="tel:${programme.contact.telephone}">${programme.contact.display}</a></p>
