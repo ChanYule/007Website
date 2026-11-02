@@ -20,7 +20,7 @@ const scheduledProgrammes = [
     description: "A virtual travel and cultural discovery programme that takes seniors on journeys around the world through videos, discussions, games, and shared memories. Join your parent or adult child to discover new places, share stories, and strengthen family connections.",
     categories: ["cultural", "family"], categoryLabel: "Virtual Travel / Cultural Discovery / Family Bonding",
     highlights: [["◎", "Virtual travel experiences"], ["✦", "Cultural discovery activities"], ["◇", "Interactive games"], ["♡", "Meaningful family conversations"], ["♧", "Sharing travel memories and experiences"]],
-    sessions: ["2026-11-30", "2026-12-02", "2026-12-03", "2026-12-07", "2026-12-09", "2026-12-10", "2027-01-06"],
+    sessions: ["2026-11-25", "2026-12-02", "2026-12-09", "2026-12-16", "2026-12-23", "2026-12-30"],
     venue: { name: "GLOW Bukit Batok", street: "212 Bukit Batok Street 21", unit: "#01-237", postal: "650212" },
     contact: { display: "6347 2801", telephone: "+6563472801" },
     image: "images/Travelling%20Without%20Borders.jpeg", cardImageAlt: "Senior parent and adult child exploring together on a laptop",
