@@ -9,7 +9,7 @@ Both **Memories Meet Digital** and **Travelling without Borders** are added to t
 
 ## Registration
 
-The original posters are now supplied and displayed uncropped in the cards and details, with a View Full Poster link for full-size viewing and scanning their original QR codes. No registration URLs have been extracted or independently verified. The Apps Script source exists, but the website does not actually submit to it; its deployed service and spreadsheet were not verified. Its configuration and columns were left unchanged.
+The original posters are now supplied and shown as wide family-photo crops in the cards and uncropped in the details, with a View Full Poster link for full-size viewing and scanning their original QR codes. No registration URLs have been extracted or independently verified. The Apps Script source exists, but the website does not actually submit to it; its deployed service and spreadsheet were not verified. Its configuration and columns were left unchanged.
 
 The new programmes therefore use clearly labelled telephone registration at **8687 0039** (Memories) and **6347 2801** (Travelling). Families select a date and 1–4 family dyads, then read the selected programme, date, fixed time, full venue and dyad/people count to staff. Staff collect name/contact details directly and confirm availability. No personal contact data is collected or stored in the browser, and no success message or reservation is generated. Invalid or elapsed session selections cannot produce a valid booking summary; telephone enquiries remain available.
 

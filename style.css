@@ -1242,11 +1242,13 @@ body:has(.loading-screen:not(.hide)) { overflow: hidden; }
 .programme-rose { --programme-accent: #96324e; --programme-soft: #fbe5ec; }
 .programme-sky { --programme-accent: #1b5078; --programme-soft: #e1f1fb; }
 .programme-card { border-top: 4px solid var(--programme-accent); background: var(--paper); }
-.programme-art { position: relative; background: var(--programme-soft); padding: 14px; }
-.programme-art img { display: block; width: 100%; height: 320px; object-fit: contain; }
-.programme-featured { display: table; margin: 0 auto 12px; padding: 5px 10px; border-radius: 99px; color: var(--programme-accent); background: var(--paper); font-size: 12px; font-weight: 800; }
-.programme-card .card-label { color: var(--programme-accent); letter-spacing: .08em; line-height: 1.6; }
-.programme-card h3 { font-size: 29px; margin-bottom: 14px; }
+.programme-art { position: relative; background: var(--programme-soft); overflow: hidden; isolation: isolate; }
+.programme-art img { display: block; width: 100%; height: 240px; object-fit: cover; object-position: center 47%; }
+.programme-sky .programme-art img { object-position: center 45%; }
+.programme-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #102f4326, transparent 35%, transparent 80%, #102f431a); pointer-events: none; }
+.programme-featured { position: absolute; z-index: 1; bottom: 14px; left: 14px; padding: 7px 12px; border: 1px solid #ffffffb3; border-radius: 99px; color: var(--programme-accent); background: #fffdf8f5; box-shadow: 0 3px 12px #142c3d12; font-size: 12px; font-weight: 800; }
+.programme-card .card-label { color: var(--programme-accent); letter-spacing: .1em; line-height: 1.6; font-size: 11px; }
+.programme-card h3 { font-size: 29px; margin: 10px 0 14px; line-height: 1.15; }
 .programme-desc { font-size: 15px; color: var(--ink-soft); }
 .programme-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
 .programme-badges span { background: var(--programme-soft); color: var(--programme-accent); padding: 5px 10px; border-radius: 8px; font-weight: 800; font-size: 14px; }

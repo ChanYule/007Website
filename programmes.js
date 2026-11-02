@@ -10,7 +10,8 @@ const scheduledProgrammes = [
     sessions: ["2026-11-12", "2026-11-19", "2026-11-26", "2026-12-10", "2026-12-17", "2026-12-23", "2026-12-30", "2027-01-06"],
     venue: { name: "Tzu Chi SEEN @ Bukit Batok (Golden Daisy)", street: "230A Bukit Batok Street 21", unit: "#02-423", postal: "651230" },
     contact: { display: "8687 0039", telephone: "+6586870039" },
-    image: "images/Memories%20Meet%20Digital.png", imageAlt: "Original Memories Meet Digital programme poster with family keepsake activities, session details and registration QR code"
+    image: "images/Memories%20Meet%20Digital.png", cardImageAlt: "Senior parent and adult child sharing family photographs",
+    imageAlt: "Original Memories Meet Digital programme poster with family keepsake activities, session details and registration QR code"
   },
   {
     id: "travelling-without-borders", type: "scheduled-programme", accent: "sky",
@@ -22,7 +23,8 @@ const scheduledProgrammes = [
     sessions: ["2026-11-30", "2026-12-02", "2026-12-03", "2026-12-07", "2026-12-09", "2026-12-10", "2027-01-06"],
     venue: { name: "GLOW Bukit Batok", street: "212 Bukit Batok Street 21", unit: "#01-237", postal: "650212" },
     contact: { display: "6347 2801", telephone: "+6563472801" },
-    image: "images/Travelling%20Without%20Borders.png", imageAlt: "Original Travelling without Borders programme poster with virtual travel activities, session details and registration QR code"
+    image: "images/Travelling%20Without%20Borders.png", cardImageAlt: "Senior parent and adult child exploring together on a laptop",
+    imageAlt: "Original Travelling without Borders programme poster with virtual travel activities, session details and registration QR code"
   }
 ].map(programme => ({
   ...programme, timezone: "Asia/Singapore", startTime: "13:30", endTime: "15:30", durationMinutes: 120,
@@ -50,7 +52,7 @@ function programmeTime(programme) {
 function renderProgrammeCard(programme) {
   const ended = programme.sessions.every(date => sessionUnavailable(programme, date));
   return `<article class="activity-card programme-card programme-${programme.accent}">
-    <div class="programme-art"><span class="programme-featured">Featured programme</span><img src="${programme.image}" alt="${programme.imageAlt}" width="768" height="2048" loading="lazy" /></div>
+    <div class="programme-art"><span class="programme-featured">Featured programme</span><img src="${programme.image}" alt="${programme.cardImageAlt}" width="768" height="2048" loading="lazy" /></div>
     <div class="activity-body"><span class="card-label">${esc(programme.categoryLabel)}</span><h3>${esc(programme.title)}</h3>
       <p class="programme-desc">${esc(programme.desc)}</p>
       <div class="programme-badges"><span>FREE</span><span>2 hours per session</span></div>
